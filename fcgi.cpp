@@ -60,10 +60,10 @@ class Queries: public Fastcgipp::Request<char> {
 }
 
 int main( int argc, char *argv[]) {
-	Fastcgipp::Manager<Queries> manager;
-	manager.setupSignals();
-	manager.listen();
-	manager.start();
-	manager.join();
+    Fastcgipp::Manager<Queries> manager;
+    manager.setupSignals();
+    manager.listen();
+    manager.start();
+    manager.join();
     return 0;
 }
