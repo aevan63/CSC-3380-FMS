@@ -40,13 +40,14 @@ class Queries: public Fastcgipp::Request<char> {
 	    char* db = "";
 	    char* query;
 
-		// connect to the database
+	    // connect to the database
 	    MYSQL* conn = mysql_init ( NULL );
 	    mysql_real_connect ( conn, "localhost", user, password, db, 0, mySqlSock , 0);
 
-		// several different kinds of queries we will have to choose between
-		// based on the data supplied by the request
-		// To Do: build all the query factories
+	    // several different kinds of queries we will have to choose between
+	    // based on the data supplied by the request
+	    // To Do: build all the query factories
+	    // To Do: needs dynamic field allocation to deal with tags
 	    query = queryFactory.ask(environment().posts);
 
 	    // actually perform the query, save the result
