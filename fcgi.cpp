@@ -32,17 +32,17 @@ class Queries: public Fastcgipp::Request<char> {
 	}
 	MYSQL_RES* getQuery() {
 
-		// variables for connecting to the database; note that the username and password are associated with the database
-		// To Do: these should be set in a config file; database password should be elsewhere not in plaintext;
-		char* user = "testuser";
+	    // variables for connecting to the database; note that the username and password are associated with the database
+	    // To Do: these should be set in a config file; database password should be elsewhere not in plaintext;
+	    char* user = "testuser";
 	    char* password = "";
-		char* mySqlSock = "/tmp/mysql/sock";
-		char* db = "";
-		char* query;
+            char* mySqlSock = "/tmp/mysql/sock";
+	    char* db = "";
+	    char* query;
 
 		// connect to the database
-		MYSQL* conn = mysql_init ( NULL );
-		mysql_real_connect ( conn, "localhost", user, password, db, 0, mySqlSock , 0);
+	    MYSQL* conn = mysql_init ( NULL );
+	    mysql_real_connect ( conn, "localhost", user, password, db, 0, mySqlSock , 0);
 
 		// several different kinds of queries we will have to choose between
 		// based on the data supplied by the request
