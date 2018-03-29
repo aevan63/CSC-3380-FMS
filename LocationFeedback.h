@@ -2,19 +2,21 @@
 
 #ifndef LOCATIONFEEDBACK_H
 #define LOCATIONFEEDBACK_H
-#include "Feedback.h"
 #include <string>
 using namespace std;
 
-class LocationFeedback : public Feedback {
+class LocationFeedback {
 private:
+    string text;
+    string email;
+    string phone;
+    string tag;
     string location;
     string service;
     string employee;
-    virtual void setSpecificFields(string*);
 public:
     LocationFeedback();
-    LocationFeedback(string, string, string, string, string, string);
+    LocationFeedback(const string*);
 };
 
 #endif

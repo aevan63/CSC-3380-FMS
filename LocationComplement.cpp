@@ -1,11 +1,9 @@
 // Written by Christian Lashover
 
-#include "LocationFeedback.h"
-#include "LocationComplement.h"
 #include <string>
+#include "LocationComplement.h"
 using namespace std;
 
-LocationComplement::LocationComplement(string text, string email, string phone, string location, string service, string employee) :
-LocationFeedback(text, email, phone, location, service, employee) {
-    
-};
+LocationComplement::LocationComplement() : LocationFeedback() { }
+
+LocationComplement::LocationComplement(const string* fields) : LocationFeedback(fields) { }

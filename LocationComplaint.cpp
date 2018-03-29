@@ -1,11 +1,9 @@
 // Written by Christian Lashover
 
-#include "LocationFeedback.h"
-#include "LocationComplaint.h"
 #include <string>
+#include "LocationComplaint.h"
 using namespace std;
 
-LocationComplaint::LocationComplaint(string text, string email, string phone, string location, string service, string employee) :
-LocationFeedback(text, email, phone, location, service, employee) {
-    
-};
+LocationComplaint::LocationComplaint() : LocationFeedback() { }
+
+LocationComplaint::LocationComplaint(const string* fields) : LocationFeedback(fields) { }

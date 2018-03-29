@@ -1,11 +1,9 @@
 // Written by Christian Lashover
 
-#include "ProductFeedback.h"
-#include "ProductComplement.h"
 #include <string>
+#include "ProductComplement.h"
 using namespace std;
 
-ProductComplement::ProductComplement(string text, string email, string phone, string product) :
-ProductFeedback(text, email, phone, product) {
-    
-};
+ProductComplement::ProductComplement() : ProductFeedback() { }
+
+ProductComplement::ProductComplement(const string* fields) : ProductFeedback(fields) { }

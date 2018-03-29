@@ -2,17 +2,19 @@
  
 #ifndef PRODUCTFEEDBACK_H
 #define PRODUCTFEEDBACK_H
-#include "Feedback.h"
 #include <string>
 using namespace std;
 
-class ProductFeedback : public Feedback {
+class ProductFeedback {
 private:
+    string text;
+    string email;
+    string phone;
+    string tag;
     string product;
-    virtual void setSpecificFields(string*);
 public:
     ProductFeedback();
-    ProductFeedback(string, string, string, string);
+    ProductFeedback(const string*);
 };
 
 #endif

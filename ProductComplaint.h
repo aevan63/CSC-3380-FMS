@@ -2,13 +2,14 @@
 
 #ifndef PRODUCTCOMPLAINT_H
 #define PRODUCTCOMPLAINT_H
-#include "ProductFeedback.h"
 #include <string>
+#include "ProductFeedback.h"
 using namespace std;
 
 class ProductComplaint : public ProductFeedback {
 public:
-    ProductComplaint(string, string, string, string);
+    ProductComplaint();
+    ProductComplaint(const string*);
 };
 
 #endif

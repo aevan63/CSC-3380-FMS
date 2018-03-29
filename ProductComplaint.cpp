@@ -1,11 +1,7 @@
 // Written by Christian Lashover
 
-#include "ProductFeedback.h"
-#include "ProductComplaint.h"
 #include <string>
+#include "ProductComplaint.h"
 using namespace std;
 
-ProductComplaint::ProductComplaint(string text, string email, string phone, string product) :
-ProductFeedback(text, email, phone, product) {
-    
-};
+ProductComplaint::ProductComplaint(const string* fields) : ProductFeedback(fields) { }

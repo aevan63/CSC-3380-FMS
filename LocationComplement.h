@@ -2,13 +2,14 @@
 
 #ifndef LOCATIONCOMPLEMENT_H
 #define LOCATIONCOMPLEMENT_H
-#include "LocationFeedback.h"
 #include <string>
+#include "LocationFeedback.h"
 using namespace std;
 
 class LocationComplement : public LocationFeedback {
 public:
-    LocationComplement(string, string, string, string, string, string);
+    LocationComplement();
+    LocationComplement(const string*);
 };
 
 #endif

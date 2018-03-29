@@ -1,19 +1,17 @@
 // Written by Christian Lashover
 
-#include "ProductFeedback.h"
-#include "Feedback.h"
 #include <string>
+#include "ProductFeedback.h"
 using namespace std;
 
-void ProductFeedback::setSpecificFields(string* fields) {
-    product = fields[0];
+ProductFeedback::ProductFeedback() {
+    text = email = phone = tag = product = "";
 }
 
-ProductFeedback::ProductFeedback() : Feedback() {
-    product = "";
-}
-
-ProductFeedback::ProductFeedback(string text, string email, string phone, string product) :
-Feedback(text, email, phone) {
-    setSpecificFields(&product);
+ProductFeedback::ProductFeedback(const string* fields) {
+    text = fields[0];
+    email = fields[1];
+    phone = fields[2];
+    tag = fields[3];
+    product = fields[4];
 }
