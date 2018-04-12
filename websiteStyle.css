@@ -1,0 +1,50 @@
+@font-face{
+  font-family: "Capture It";
+  src: url("Capture_it.ttf")
+}
+#topHeader{
+  background-color: #666;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+#LSU{
+  text-align: center;
+  font-family: "Capture It", serif;
+  font-size: 40px;
+  letter-spacing: 9px;
+}
+#welcome{
+  text-align: center;
+
+}
+#navigation{
+  text-align: center;
+  position: sticky;
+  top: 0px;
+}
+/*NavBar style*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: sticky;
+}
+
+li {
+    display: inline;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 85px;
+    text-decoration: none;
+}
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+/*NavBar style*/
