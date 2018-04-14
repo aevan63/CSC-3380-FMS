@@ -2,23 +2,21 @@
 
 #ifndef MARIADBINITIALIZER_H
 #define MARIADBINITIALIZER_H
-#include <fstream>
 #include <mysql.h>
 using namespace std;
 
 class MariaDBInitializer {
 private:
     MYSQL* conn;
-    const char* host = "localhost";
-    const char* user;
-    const char* password;
-    const char* database;
-    unsigned int port;
-    const char* sock;
-    fstream configFile;
+    const char* host = "vps133111.vps.ovh.ca";
+    const char* user = "localhost";
+    const char* password = "En7terW/#@Care";
+    const char* database = "testdb";
+    unsigned int port = 15510;
+    const char* sock = "/tmp/mysql/sock";
 public:
     MariaDBInitializer();
-    MYSQL* connect(MYSQL*);
+    MYSQL* connect();
 };
 
 #endif
