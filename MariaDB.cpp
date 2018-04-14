@@ -31,7 +31,7 @@ MYSQL_ROW* MariaDB:: stringRES(MYSQL_RES*& result) {
 				row[j] ? row[j] : "NULL");			
 		}
 		printf("\n");
-		i++
+		i++;
 	}
 	return rows;
 }
