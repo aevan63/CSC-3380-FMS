@@ -1,4 +1,4 @@
-// Written by Christian Lashover
+// Written by Christian Lashover and Jackie Bowers
 
 #ifndef MARIADB_H
 #define MARIADB_H
