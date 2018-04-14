@@ -11,21 +11,22 @@ MariaDB::MariaDB() {
 
 void MariaDB::query(string query) {
     state = mysql_real_query(conn, query.c_str(), query.length());
+    queryResult = mysql_store_result(conn);
 }
 
 void MariaDB::close() {
     mysql_close(conn);
 }
 
-MYSQL_ROW* MariaDB:: stringRES(MYSQL_RES*& result) {
+MYSQL_ROW* MariaDB::stringRES() {
 	MYSQL_ROW row;
-	numRows = mysql_num_rows(MYSQL_RES *result);
+	int numRows = mysql_num_rows(queryResult);
 	MYSQL_ROW* rows = new MYSQL_ROW[numRows];
 
 	for (unsigned int i = 0; i<numRows; ++i) {
 		unsigned long *lengths;
-		lengths = mysql_fetch_lengths(result);
-		for(unsigned int j=0; j < mysql_num_fields(result); ++j) {
+		lengths = mysql_fetch_lengths(queryResult);
+		for(unsigned int j=0; j < mysql_num_fields(queryResult); ++j) {
 			rows[i][j] = row[j];
             //for now lets also have it print for testing
 			printf("[%.*s] ", (int) lengths[j],

@@ -15,7 +15,7 @@ public:
     MariaDB();
     void query(string);
     void close();
-    MYSQL_ROW* stringRES(MYSQL_RES*& result);
+    MYSQL_ROW* stringRES();
 };
 
 #endif
