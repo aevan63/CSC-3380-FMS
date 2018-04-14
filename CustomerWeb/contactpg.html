@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>This Is a Website</title>
+
+    <script>
+    //for any javascript functions if needed
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="websiteStyle.css" />
+  <head>
+
+  <body>
+    <div id="background">
+
+      <div id="topHeader">
+
+        <div id="LSU">
+          <h1 style="font-size:9vw">LSU MERCHANDISE</h1>
+        </div>
+        <div id="welcome">
+            <h2>GEAUX TIGERS</h2>
+        </div>
+
+      </div>
+
+      <div id="innerBody">
+
+        <div id="navigation">
+          <ul style="font-size:2vw">
+              <li><a href="homepg.html">Home</a></li>
+              <li><a href="shoppg.html">Shop</a></li>
+              <li><a class="active" href="contactpg.html">Contact</a></li>
+              <li><a href="aboutpg.html">About</a></li>
+          </ul>
+        </div>
+
+        <div id="main">
+
+          <h2>We value your input</h2>
+
+          <form id="commentSec" action="">
+
+            <fieldset id="contactInfo">
+              <legend>Contact Information</legend><br>
+              Name:<br>
+              <input id="box1" type="text" name="inName" placeholder="ex: John Smith"><br><br>
+              Email:<br>
+              <input id="box2" type="email" name="inEmail" placeholder="ex: JohnSmith@gmail.com"><br><br>
+          </fieldset><br><br>
+/*action unfinished*/
+          <fieldset id="comment" action="">
+            <legend>Leave a comment below!</legend><br>
+            Comment Type:
+            <select>
+              <option value="question">Question</option>
+              <option value="comment">Comment</option>
+              <option value="concern">Concern</option>
+            </select><br><br>
+            <textarea id="box3" action="/" type="text" name="inText"
+            placeholder="Once completed please press the submit button below..."
+            rows="10" cols="40" maxlength="1000"></textarea><br><br>
+          </fieldset><br><br>
+          <input type="submit" value="SEND">
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </body>
+
+</html>

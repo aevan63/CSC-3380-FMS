@@ -1,0 +1,98 @@
+@font-face{
+  font-family: "Capture It";
+  src: url("Capture_it.ttf")
+}
+#topHeader{
+  background-color: #666;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+#LSU{
+  text-align: center;
+  font-family: "Capture It", serif;
+  font-size: 40px;
+  letter-spacing: 9px;
+}
+#welcome{
+  text-align: center;
+
+}
+
+/*NavBar style*/
+#navigation{
+  text-align: center;
+  position: sticky;
+  top: 0px;
+}
+.active{
+  background-color: #4CAF50;
+  color: white;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: sticky;
+}
+
+li {
+    display: inline;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 85px;
+    text-decoration: none;
+}
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+/*NavBar style*/
+
+/*contact style*/
+#contactInfo{
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+#box1{
+  width: 250px;
+  padding: 10px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+}
+#box2{
+  width: 250px;
+  padding: 10px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+}
+
+#comment{
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+#box3{
+  width: 600px;
+  max-height: 200px;
+  padding: /*up*/10px /*left*/15px /*down*/200px /*right*/15px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+/*contact style*/
