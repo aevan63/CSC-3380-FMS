@@ -48,7 +48,7 @@ class Queries: public Fastcgipp::Request<char> {
 	        if (0)
 	        	throw "Connection failed!";
 	        else
-	        	cout <<"Connection successful\n"
+	        	cout <<"Connection successful\n";
 
 	        // several different kinds of queries we will have to choose between
 	        // based on the data supplied by the request
