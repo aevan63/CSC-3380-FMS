@@ -7,6 +7,7 @@
 #include <fastcgi++/manager.hpp>
 #include <mysql.h> // from MariaDB's website
 #include <sstream>
+#include "MariaDBInitializer.h"
 
 using namespace std;
 
