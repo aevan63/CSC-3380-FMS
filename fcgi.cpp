@@ -6,6 +6,7 @@
 #include <fastcgi++/request.hpp> // from https://github.com/eddic/fastcgipp
 #include <fastcgi++/manager.hpp>
 #include <mysql.h> // from MariaDB's website
+#include <sstream>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ class Queries: public Fastcgipp::Request<char> {
 	bool response() {
 	        using Fastcgipp::Encoding;
        	        MYSQL_RES* result = getQuery();
+       	        MYSQL_ROW stringRes = stringRES(result);
 
 		// just using 'out' should send this to the webserver to send to the client. thanks again fastcgi++
 		out << "Content-type: text/html\r\n"
@@ -24,12 +26,26 @@ class Queries: public Fastcgipp::Request<char> {
 	        << "  <head>\n"
 	        << "    <title>Hello, World!</title>\n"
 	        << "  </head>\n"
-		<< "  <body>\n"
-	        << "    <h1>" + *result + "</h1>\n"
+		    << "  <body>\n"
+	        << "    <h1>" << stringRes[0] << "</h1>\n"
 	        << "  </body>\n"
 	        << "</html>\n";
 
 		return true;
+	}
+	MYSQL_ROW stringRES(MYSQL_RES*& result) {
+		MYSQL_ROW row;
+
+		while ((row = mysql_fetch_row(result))) {
+			unsigned long *lengths;
+			lengths = mysql_fetch_lengths(result);
+			for(unsigned int i=0; i < mysql_num_fields(result); i++) {
+				printf("[%.*s] ", (int) lengths[i],
+						row[i] ? row[i] : "NULL");
+			}
+			printf("\n");
+		}
+		return row;
 	}
 	MYSQL_RES* getQuery() {
 
@@ -63,7 +79,7 @@ class Queries: public Fastcgipp::Request<char> {
 	        mysql_close(conn);
 	        return result;
 	}
-}
+};
 
 int main( int argc, char *argv[]) {
          Fastcgipp::Manager<Queries> manager;
