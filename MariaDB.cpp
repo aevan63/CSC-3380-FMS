@@ -19,7 +19,7 @@ void MariaDB::close() {
 
 MYSQL_ROW* MariaDB:: stringRES(MYSQL_RES*& result) {
 	MYSQL_ROW row;
-	MYSQL_ROW* rows = new MYSQL_ROW[mysql_num_rows(MYSQL_RES *result];
+	MYSQL_ROW* rows = new MYSQL_ROW[mysql_num_rows(MYSQL_RES *result)];
 	unsigned int i = 0;
 	while ((row = mysql_fetch_row(result))) {
 		unsigned long *lengths;
