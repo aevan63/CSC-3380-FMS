@@ -8,9 +8,9 @@ using namespace std;
 class MariaDBInitializer {
 private:
     MYSQL* conn;
-    const char* host = "vps133111.vps.ovh.ca";
+    const char* host = "";
     const char* user = "localhost";
-    const char* password = "En7terW/#@Care";
+    const char* password = "";
     const char* database = "testdb";
     unsigned int port = 15510;
     const char* sock = "/tmp/mysql/sock";
