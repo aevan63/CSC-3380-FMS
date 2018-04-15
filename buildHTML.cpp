@@ -35,7 +35,7 @@ buildHTML::buildHTML(MYSQL_ROW* RES, const Fastcgipp::Http::Environment& environ
 string* buildHTML::buildFromSQL() {
 	//code goes here
 	//will likely use Christian's feedback classes here I think
-	return stringRes;
+	return stringRES;
 }
 
 string buildHTML::fixHTML(string* HTMLRes) {
