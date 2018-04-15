@@ -14,26 +14,27 @@
 std::string* parameters = configParse();
 #endif
 
+using namespace std;
+
 inline std::string* configParse(){
 	ifstream config;
 	config.open("FMS_Fcgi.conf");
-	std::string* ruleList = new string[10]; //or something, prolly not 10 lol
-	//do some stuff
+	string* ruleList = new string[10]; //or something, prolly not 10 lol
+	//do some more stuff
 	return ruleList;
 }
 
-using namespace std;
 class buildHTML {
 	private:
 		tr1::regex website;
 		string uri;
 		string html;
-
-
+		string* stringRES;
 
 	public:
 		buildHTML(const Fastcgipp::Http::Environment& enviroment());
 		buildHTML(MYSQL_ROW* stringRes, const Fastcgipp::Http::Environment& environment(), std::string website);
+		string* buildFromSQL();
 		string fixHTML(string* stringRes);
 		string getHtml();
 		string geturi();
