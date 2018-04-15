@@ -21,7 +21,7 @@ class BuildResponse: public Fastcgipp::Request<char> {
 		sqlObj.query(BuildQuery(environment()));
 		MYSQL_ROW* stringRes = sqlObj.stringRES();
 
-	        buildHTML page = buildHTML(stringRes, environment(), website);
+	        buildHTML page = BuildHTML(stringRes, environment(), website);
 
 	        // out sends page to server w/ fastcgi++
 	        out << page.fixHTML(page.buildFromSQL());
