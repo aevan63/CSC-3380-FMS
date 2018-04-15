@@ -1,6 +1,5 @@
 // Written by Jackie Bowers
 //queries an sql database with requests from a webserver with fastcgi
-//probably doesnt work yet
 
 #include <iostream>
 #include <fstream>
@@ -12,7 +11,7 @@
 #include "MariaDB.h"
 
 
-class Queries: public Fastcgipp::Request<char> {
+class BuildResponse: public Fastcgipp::Request<char> {
 	using Fastcgipp::Encoding;
 	//with the fastcgi++ library the response method of any request class
 	//seems to be called automatically when it is needed by the manager
