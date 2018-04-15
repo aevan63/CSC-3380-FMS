@@ -2,8 +2,17 @@
 
 #ifndef MARIADBINITIALIZER_H
 #define MARIADBINITIALIZER_H
+#include <string>
 #include <mysql.h>
 using namespace std;
+
+class ConnectionError {
+private:
+    string message;
+public:
+    ConnectionError(string);
+    string getError() const;
+};
 
 class MariaDBInitializer {
 private:
@@ -16,7 +25,7 @@ private:
     const char* sock = "/tmp/mysql/sock";
 public:
     MariaDBInitializer();
-    MYSQL* connect();
+    MYSQL* connect() throw (ConnectionError);
 };
 
 #endif

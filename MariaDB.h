@@ -6,16 +6,22 @@
 #include <mysql.h>
 using namespace std;
 
+class MariaDBException {
+private:
+    string message;
+public:
+    MariaDBException(string);
+};
+
 class MariaDB {
 private:
     MYSQL* conn;
     MYSQL_RES* queryResult;
-    int state;
 public:
-    MariaDB();
-    void query(string);
+    MariaDB() throw (MariaDBException);
+    void query(string) throw (MariaDBException);
     void close();
-    MYSQL_ROW* stringRES();
+    MYSQL_ROW* stringRES() const;
 };
 
 #endif

@@ -4,13 +4,20 @@
 #include "MariaDBInitializer.h"
 using namespace std;
 
-MariaDB::MariaDB() {
+MariaDB::MariaDB() throw (MariaDBException) {
     MariaDBInitializer init = MariaDBInitializer();
-    conn = init.connect();
+    try {
+        conn = init.connect();
+    }
+    catch (ConnectionError& c) {
+        throw MariaDBException(c.getError());
+    }
 }
 
-void MariaDB::query(string query) {
-    state = mysql_real_query(conn, query.c_str(), query.length());
+void MariaDB::query(string query) throw (MariaDBException) {
+    int state = mysql_real_query(conn, query.c_str(), query.length());
+    if (state)
+        throw MariaDBException("Query " + query + " failed");
     queryResult = mysql_store_result(conn);
 }
 
@@ -18,7 +25,7 @@ void MariaDB::close() {
     mysql_close(conn);
 }
 
-MYSQL_ROW* MariaDB::stringRES() {
+MYSQL_ROW* MariaDB::stringRES() const {
 	MYSQL_ROW row;
 	int numRows = mysql_num_rows(queryResult);
 	MYSQL_ROW* rows = new MYSQL_ROW[numRows];
@@ -35,4 +42,8 @@ MYSQL_ROW* MariaDB::stringRES() {
 		printf("\n");
 	}
 	return rows;
+}
+
+MariaDBException::MariaDBException(string message) {
+    this->message = message;
 }

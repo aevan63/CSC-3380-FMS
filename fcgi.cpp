@@ -19,7 +19,7 @@ class Queries: public Fastcgipp::Request<char> {
 	bool response() {
 		string website = "FMS.com"; //placeholder, ofc.
 		MariaDB sqlObj = MariaDB();
-		sqlObj.queryResult = sqlObj.query(buildQuery(environment()));
+		sqlObj.query(buildQuery(environment()));
 		MYSQL_ROW* stringRes = sqlObj.stringRES();
 
 	        buildHTML page = buildHTML(stringRes, environment(), website);
