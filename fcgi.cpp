@@ -18,7 +18,7 @@ class BuildResponse: public Fastcgipp::Request<char> {
 	bool response() {
 		string website = "FMS.com"; //placeholder, ofc.
 		MariaDB sqlObj = MariaDB();
-		sqlObj.query(buildQuery(environment()));
+		sqlObj.query(BuildQuery(environment()));
 		MYSQL_ROW* stringRes = sqlObj.stringRES();
 
 	        buildHTML page = buildHTML(stringRes, environment(), website);
