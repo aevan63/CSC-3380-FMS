@@ -1,5 +1,5 @@
 // Written by Jackie Bowers
-//queries an sql database with requests from a webserver with fastcgi
+//queries an sql database with requests from a webserver with fastcgi and returns an html page to the server
 
 #include <iostream>
 #include <fstream>
