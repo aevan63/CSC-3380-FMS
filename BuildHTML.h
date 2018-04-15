@@ -24,7 +24,7 @@ inline std::string* configParse(){
 	return ruleList;
 }
 
-class buildHTML {
+class BuildHTML {
 	private:
 		tr1::regex website;
 		string uri;
@@ -32,8 +32,8 @@ class buildHTML {
 		string* stringRES;
 
 	public:
-		buildHTML(const Fastcgipp::Http::Environment& enviroment());
-		buildHTML(MYSQL_ROW* stringRes, const Fastcgipp::Http::Environment& environment(), std::string website);
+		BuildHTML(const Fastcgipp::Http::Environment& enviroment());
+		BuildHTML(MYSQL_ROW* stringRes, const Fastcgipp::Http::Environment& environment(), std::string website);
 		string* buildFromSQL();
 		string fixHTML(string* HTMLRes);
 		string getHtml();

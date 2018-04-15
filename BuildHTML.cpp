@@ -1,10 +1,10 @@
 //Written by Jackie Bowers
 
-#include "buildHTML.h"
+#include "BuildHTML.h"
 #include <iostream>
 
 using namespace std;
-buildHTML::buildHTML(const Fastcgipp::Http::Environment& environment()) {
+BuildHTML::BuildHTML(const Fastcgipp::Http::Environment& environment()) {
 	string line;
 	ifstream file;
 	file.open(uri);
@@ -16,7 +16,7 @@ buildHTML::buildHTML(const Fastcgipp::Http::Environment& environment()) {
 
 }
 
-buildHTML::buildHTML(MYSQL_ROW* RES, const Fastcgipp::Http::Environment& environment(), std::string website) {
+BuildHTML::BuildHTML(MYSQL_ROW* RES, const Fastcgipp::Http::Environment& environment(), std::string website) {
 	this->website =  website+"(.*)";
 	uri = tr1::regex_replace(environment().requestUri,this->website,"");
 	string line;
@@ -32,13 +32,13 @@ buildHTML::buildHTML(MYSQL_ROW* RES, const Fastcgipp::Http::Environment& environ
 		stringRES[i] = RES[i];
 	}
 }
-string* buildHTML::buildFromSQL() {
+string* BuildHTML::buildFromSQL() {
 	//code goes here
 	//will likely use Christian's feedback classes here I think
 	return stringRES;
 }
 
-string buildHTML::fixHTML(string* HTMLRes) {
+string BuildHTML::fixHTML(string* HTMLRes) {
 	tr1::regex tempR;
 	std::basic_string tempS;
 	for (int i = 0;i<sizeof(parameters);++i) {
@@ -59,11 +59,11 @@ string buildHTML::fixHTML(string* HTMLRes) {
 	return html;
 }
 
-string buildHTML::getHtml() {
+string BuildHTML::getHtml() {
 	return html;
 }
 
-string buildHTML::geturi() {
+string BuildHTML::geturi() {
 	return uri;
 }
 
