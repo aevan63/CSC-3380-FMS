@@ -1,0 +1,56 @@
+<!--Written by Alexis Evans-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Employee Page</title>
+	<link rel="stylesheet" type="text/css" href="Style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="header">
+  <h1>Feedback Management System</h1>
+  <h2>Welcome, Employees!</h2>
+</div>
+
+<div class="navbar">
+  <!--<a href="#" target="_blank">Extra Link</a>-->
+  <a href="https://github.com/aevan63/CSC-3380-FMS" target="_blank">GitHub</a>
+  <!--<a href="#">Extra Link</a>-->
+</div>
+
+<div class="row">
+  <div class="side">
+      <h2>Our Mission</h2>
+      <p>The Feedback Management System (FMS) is designed to increase the ease with which we manage feedback. 
+	         Gone are the days of scrolling through email after email and missing opportunities to become better as a company!</p>
+      <h3>Announcements</h3>
+      <ul>
+          <li>Please stop stealing lunches.</li><br>
+          <li>Employee Appreciation Luncheon on April 30th at 11am in the East Board Room.</li><br>
+          <li>The white board in the break room is for making note of supplies that we are low on, not dank memes.</li><br>
+      </ul> 
+  </div>
+  <div class="main">
+      <h2>Feedback Processing</h2>
+      <h5>Select a feedback type to begin processing feedback.</h5>
+	  <form action="fcgi.cpp" method="POST" name="FeedQuery">
+	        <input list="feedback" name="feedback">
+                  <datalist id="feedback">
+                  <option value="Location Compliment">
+                  <option value="Location Complaint">
+                  <option value="Product Compliment">
+                  <option value="Product Complaint">
+            </datalist>
+            <input type="submit" value="Search">
+	  </form>
+  </div>
+</div>
+
+<div class="footer">
+  <h2 id="foot">CSC 3380 2018</h2>
+</div>
+
+</body>
+</html>
