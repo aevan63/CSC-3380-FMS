@@ -43,6 +43,13 @@ MYSQL_ROW* MariaDB::stringRES() const {
 	}
 	return rows;
 }
+int* MariaDB::getNumFields() {
+	int numFields[numRows];
+	for (unsigned int i = 0; i < numRows; ++i) {
+		numFields[i] = mysql_num_fields(queryResult);
+	}
+	return numFields;
+
 
 MariaDBException::MariaDBException(string message) {
     this->message = message;
