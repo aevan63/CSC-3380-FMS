@@ -1,5 +1,7 @@
 // Written by Christian Lashover
 
+#ifndef EMPLOYEEID_H
+#define EMPLOYEEID_H
 #include <string>
 using namespace std;
 
@@ -12,3 +14,5 @@ public:
     string getName() const;
     string getID() const;
 };
+
+#endif

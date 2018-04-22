@@ -1,5 +1,7 @@
 // Written by Christian Lashover
 
+#ifndef EMPLOYEE_H
+#define EMPLOYEE_H
 #include <string>
 #include "EmployeeID.h"
 using namespace std;
@@ -14,3 +16,5 @@ public:
     string getTag() const;
     EmployeeID getInfo() const;
 };
+
+#endif
