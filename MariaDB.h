@@ -19,6 +19,7 @@ private:
     MYSQL_RES* queryResult;
 public:
     int numRows;
+    int* getNumFields();
     MariaDB() throw (MariaDBException);
     void query(string) throw (MariaDBException);
     void close();
