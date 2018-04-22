@@ -18,6 +18,7 @@ private:
     MYSQL* conn;
     MYSQL_RES* queryResult;
 public:
+    int numRows;
     MariaDB() throw (MariaDBException);
     void query(string) throw (MariaDBException);
     void close();
