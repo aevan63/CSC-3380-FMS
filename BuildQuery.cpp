@@ -6,19 +6,31 @@ using namespace std;
 
 void BuildQuery::formToSQL() {
     ostringstream query;
+    bool isLocation = true, isComplaint = true; // Temporary values
     if (GETData.size()) {
-        // Do stuff
+        query << "select UserText, Name, Email, Phone, Tag, "
+              << ((isLocation) ? "Location, Service, Employee " : "Product ")
+              << "from "
+              << ((isLocation) ? "LocationFeedback " : "ProductFeedback ")
+              << "where IsComlpaint="
+              << ((isComplaint) ? "true" : "false")
+              << ";";
     }
     
     if (POSTData.size()) {
-        query << "insert into Feedback (UserText, Name, Email"
-              << ((POSTData.find("inPhone") != POSTData.end()) ? ", Phone" : "")
-              << ((POSTData.find("inProduct") != POSTData.end()) ? ", Product" : "")
-              << ((POSTData.find("inLocation") != POSTData.end()) ? ", Location" : "")
-              << ((POSTData.find("inService") != POSTData.end()) ? ", Service" : "")
-              << ((POSTData.find("inEmployee") != POSTData.end()) ? ", Employee" : "")
+        query << "insert into "
+              << ((isLocation) ? "LocationFeedback " : "ProductFeedback ")
+              << "(UserText, Name, Email"
+              << ((POSTData.find("inPhone") != POSTData.end()) ? ", Phone" : "");
+        if (isLocation) {
+            query << ", Location"
+                  << ((POSTData.find("inService") != POSTData.end()) ? ", Service" : "")
+                  << ((POSTData.find("inEmployee") != POSTData.end()) ? ", Employee" : "");
+        }
+        else
+            query << ", Product";
+        query << ", IsComplaint"
               << ")" << "values (";
-        string inText, inName, inEmail;
         map<string, string>::iterator it;
         it = POSTData.find("inText");
         query << "'" << it->second << "', ";
@@ -29,18 +41,24 @@ void BuildQuery::formToSQL() {
         it = POSTData.find("inPhone");
         if (it != POSTData.end())
             query << ", '" << it->second << "'";
-        it = POSTData.find("inProduct");
-        if (it != POSTData.end())
+        if (isLocation) {
+            it = POSTData.find("inLocation");
             query << ", '" << it->second << "'";
-        it = POSTData.find("inLocation");
-        if (it != POSTData.end())
+            it = POSTData.find("inService");
+            if (it != POSTData.end())
+                query << ", '" << it->second << "'";
+            it = POSTData.find("inEmployee");
+            if (it != POSTData.end())
+                query << ", '" << it->second << "'";
+        }
+        else {
+            it = POSTData.find("inProduct");
             query << ", '" << it->second << "'";
-        it = POSTData.find("inService");
-        if (it != POSTData.end())
-            query << ", '" << it->second << "'";
-        it = POSTData.find("inEmployee");
-        if (it != POSTData.end())
-            query << ", '" << it->second << "'";
+        }
+        if (isComplaint)
+            query << ", true";
+        else
+            query << ", false";
         query << ");";
     }
     constructedQuery = query.str();
