@@ -27,7 +27,7 @@ void MariaDB::close() {
 
 MYSQL_ROW* MariaDB::stringRES() const {
 	MYSQL_ROW row;
-	int numRows = mysql_num_rows(queryResult);
+	numRows = mysql_num_rows(queryResult);
 	MYSQL_ROW rows[numRows];
 
 	for (unsigned int i = 0; i<numRows; ++i) {
