@@ -3,15 +3,17 @@
 #ifndef BUILDQUERY_H
 #define BUILDQUERY_H
 #include <string>
+#include <map>
 using namespace std;
 
 class BuildQuery {
 private:
-    string environHTML;
+    multimap<string, string> GETData;
+    multimap<string, string> POSTData;
     string constructedQuery;
     void formToSQL();
 public:
-    BuildQuery(string);
+    BuildQuery(const multimap<string, string>&, const multimap<string, string>&);
     string getQuery() const;
 };
 
