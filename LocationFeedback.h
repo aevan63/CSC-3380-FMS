@@ -8,6 +8,7 @@ using namespace std;
 class LocationFeedback {
 private:
     string text;
+    string name;
     string email;
     string phone;
     string tag;

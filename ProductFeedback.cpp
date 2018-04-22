@@ -5,13 +5,14 @@
 using namespace std;
 
 ProductFeedback::ProductFeedback() {
-    text = email = phone = tag = product = "";
+    text = name = email = phone = tag = product = "";
 }
 
 ProductFeedback::ProductFeedback(const string* fields) {
     text = fields[0];
-    email = fields[1];
-    phone = fields[2];
-    tag = fields[3];
-    product = fields[4];
+    name = fields[1];
+    email = fields[2];
+    phone = fields[3];
+    tag = fields[4];
+    product = fields[5];
 }

@@ -5,15 +5,16 @@
 using namespace std;
 
 LocationFeedback::LocationFeedback() {
-    text = email = phone = tag = location = service = employee = "";
+    text = name = email = phone = tag = location = service = employee = "";
 }
 
 LocationFeedback::LocationFeedback(const string* fields) {
     text = fields[0];
-    email = fields[1];
-    phone = fields[2];
-    tag = fields[3];
-    location = fields[4];
-    service = fields[5];
-    employee = fields[6];
+    name = fields[1];
+    email = fields[2];
+    phone = fields[3];
+    tag = fields[4];
+    location = fields[5];
+    service = fields[6];
+    employee = fields[7];
 }
