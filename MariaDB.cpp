@@ -4,6 +4,11 @@
 #include "MariaDBInitializer.h"
 using namespace std;
 
+
+MariaDBException::MariaDBException(string message) {
+    this->message = message;
+}
+
 MariaDB::MariaDB() throw (MariaDBException) {
     MariaDBInitializer init = MariaDBInitializer();
     try {
@@ -16,8 +21,8 @@ MariaDB::MariaDB() throw (MariaDBException) {
 
 void MariaDB::query(string query) throw (MariaDBException) {
     int state = mysql_real_query(conn, query.c_str(), query.length());
-    if (state)
-        throw MariaDBException("Query " + query + " failed");
+    /*if (state)
+        throw MariaDBException("Query " + query + " failed");*/
     queryResult = mysql_store_result(conn);
 }
 
@@ -25,7 +30,7 @@ void MariaDB::close() {
     mysql_close(conn);
 }
 
-MYSQL_ROW* MariaDB::stringRES() const {
+MYSQL_ROW* MariaDB::stringRES() {
 	MYSQL_ROW row;
 	numRows = mysql_num_rows(queryResult);
 	MYSQL_ROW rows[numRows];
@@ -49,8 +54,6 @@ int* MariaDB::getNumFields() {
 		numFields[i] = mysql_num_fields(queryResult);
 	}
 	return numFields;
-
-
-MariaDBException::MariaDBException(string message) {
-    this->message = message;
 }
+
+
