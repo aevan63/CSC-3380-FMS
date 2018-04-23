@@ -8,7 +8,7 @@
 #include <libxml/tree.h>
 #include <libxml/HTMLparser.h>
 #include <libxml/tree.h>
-#include <libxml++/libxml++.h>
+//#include <libxml++/libxml++.h>
 #include <tr1/regex>
 #include <mysql.h>
 #include <fastcgi++/request.hpp>
@@ -21,17 +21,18 @@
 using namespace std;
 
 
-class buildHTML {
+class BuildHTML {
 	private:
 		string uri;
 		string html;
 		htmlDocPtr HTMLdoc;
 		int insertNum;
+		multimap<string, string>& GETdata;
 
 	public:
-		buildHTML(const Fastcgipp::Http::Environment& enviroment(), std::string website);
+		BuildHTML(const multimap<string, string>& gets, const string requestUri, std::string website);
 
-		buildHTML(MYSQL_ROW* stringRes,int numRows,int* numFields, const Fastcgipp::Http::Environment& environment(), std::string website, std::string feedbackForm);
+		BuildHTML(const multimap<string, string>& gets, const string requestUri, MYSQL_ROW* stringRes,int numRows,int* numFields, std::string website, std::string feedbackForm);
 
 		htmlNodePtr findInsert(htmlNodePtr root, string matchName);
 
