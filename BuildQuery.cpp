@@ -10,14 +10,23 @@ void BuildQuery::formToSQL() {
     multimap<string, string>::iterator it;
     
     if (GETData.size()) {
-        if (GETData.find("good-or-bad")->second == "Complaint")
+        it = GETData.find("feedback");
+        if (it->second == "Location Complaint") {
             isComplaint = true;
-        else
-            isComplaint = false;
-        if (GETData.find("inLocation") != GETData.end())
             isLocation = true;
-        else
+        }
+        else if (it->second == "Location Compliment") {
+            isComplaint = false;
+            isLocation = true;
+        }
+        else if (it->second == "Product Complaint") {
+            isComplaint = true;
             isLocation = false;
+        }
+        else {
+            isComplaint = false;
+            isLocation = false;
+        }
         
         query << "select ID, UserText, Name, Email, Phone, Tag, "
               << ((isLocation) ? "Location, Service, Employee " : "Product ")
