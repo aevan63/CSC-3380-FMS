@@ -6,22 +6,46 @@ using namespace std;
 
 void BuildQuery::formToSQL() {
     ostringstream query;
-    bool isLocation = true, isComplaint = true; // Temporary values
+    bool isLocation, isComplaint;
+    multimap<string, string>::iterator it;
+    
     if (GETData.size()) {
-        query << "select UserText, Name, Email, Phone, Tag, "
+        if (GETData.find("good-or-bad")->second == "Complaint")
+            isComplaint = true;
+        else
+            isComplaint = false;
+        if (GETData.find("inLocation") != GETData.end())
+            isLocation = true;
+        else
+            isLocation = false;
+        
+        query << "select ID, UserText, Name, Email, Phone, Tag, "
               << ((isLocation) ? "Location, Service, Employee " : "Product ")
               << "from "
               << ((isLocation) ? "LocationFeedback " : "ProductFeedback ")
               << "where IsComlpaint="
-              << ((isComplaint) ? "true" : "false")
-              << ";";
+              << ((isComplaint) ? "true" : "false");
+        it = GETData.find("inTag");
+        if (it != GETData.end())
+            query << " and Tag='" << it->second << "'";
+        query << ";";
     }
     
-    if (POSTData.size()) {
+    else if (POSTData.size()) {
+        if (POSTData.find("good-or-bad")->second == "Complaint")
+            isComplaint = true;
+        else
+            isComplaint = false;
+        if (POSTData.find("inLocation") != POSTData.end())
+            isLocation = true;
+        else
+            isLocation = false;
+        
         query << "insert into "
               << ((isLocation) ? "LocationFeedback " : "ProductFeedback ")
               << "(UserText, Name, Email"
               << ((POSTData.find("inPhone") != POSTData.end()) ? ", Phone" : "");
+        
         if (isLocation) {
             query << ", Location"
                   << ((POSTData.find("inService") != POSTData.end()) ? ", Service" : "")
@@ -29,10 +53,11 @@ void BuildQuery::formToSQL() {
         }
         else
             query << ", Product";
+        
         query << ", IsComplaint"
-              << ")" << "values (";
-        map<string, string>::iterator it;
-        it = POSTData.find("inText");
+              << ") " << "values (";
+        
+        it = POSTData.find("inText"); // Name needs to change in HTML or here
         query << "'" << it->second << "', ";
         it = POSTData.find("inName");
         query << "'" << it->second << "', ";
@@ -41,6 +66,7 @@ void BuildQuery::formToSQL() {
         it = POSTData.find("inPhone");
         if (it != POSTData.end())
             query << ", '" << it->second << "'";
+        
         if (isLocation) {
             it = POSTData.find("inLocation");
             query << ", '" << it->second << "'";
@@ -64,7 +90,6 @@ void BuildQuery::formToSQL() {
     constructedQuery = query.str();
 }
 
-// This isn't the final constructor
 BuildQuery::BuildQuery(const multimap<string, string>& GETData, const multimap<string, string>& POSTData) {
     this->GETData = GETData;
     this->POSTData = POSTData;

@@ -9,6 +9,7 @@
 #include <mysql.h> // from MariaDB's website
 #include "MariaDBInitializer.h"
 #include "MariaDB.h"
+#include "BuildQuery.h"
 
 
 class BuildResponse: public Fastcgipp::Request<char> {
