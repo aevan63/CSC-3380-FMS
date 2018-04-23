@@ -23,7 +23,7 @@ public:
     MariaDB() throw (MariaDBException);
     void query(string) throw (MariaDBException);
     void close();
-    MYSQL_ROW* stringRES() const;
+    MYSQL_ROW* stringRES();
 };
 
 #endif
