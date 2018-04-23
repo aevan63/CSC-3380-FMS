@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <map>
 #include <libxml/tree.h>
 #include <libxml/HTMLparser.h>
 #include <libxml/tree.h>
@@ -27,10 +28,10 @@ class BuildHTML {
 		string html;
 		htmlDocPtr HTMLdoc;
 		int insertNum;
-		multimap<string, string>& GETdata;
+		multimap<string, string> GETdata;
 
 	public:
-		BuildHTML(const multimap<string, string>& gets, const string requestUri, std::string website);
+		BuildHTML(const string requestUri, std::string website);
 
 		BuildHTML(const multimap<string, string>& gets, const string requestUri, MYSQL_ROW* stringRes,int numRows,int* numFields, std::string website, std::string feedbackForm);
 
