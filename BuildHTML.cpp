@@ -4,7 +4,7 @@
 #include <iostream>
 
 using namespace std;
-BuildHTML::BuildHTML(const multimap<string, string>& gets, const string requestUri, std::string website) {
+BuildHTML::BuildHTML(const string requestUri, std::string website) {
 	string   currentLine;
 	ifstream preFile;
 	ostringstream htmlStream;
