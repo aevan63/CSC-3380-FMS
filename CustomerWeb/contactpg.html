@@ -40,10 +40,13 @@
         <div id="main">
 
           <h2>We value your input</h2>
-          <br>
+          <br><br>
+          Are you leaving a comment about a product or about one of our locations?<br><br>
+          <input type="radio" name="prod-or-local" value="Product">Product<br><br>
+          <input type="radio" name="prod-or-local" value="Location">Location<br><br>
 
           <div class="reveal-if-active">
-            <form name="productFeebackForm">
+            <form name="productFeebackForm" action="fcgi.cpp" method="POST">
               <fieldset id="contactInfo">
                 <legend>Contact Information</legend><br>
                 Name:<br>
@@ -65,12 +68,12 @@
               placeholder="Once completed please press the submit button below..."
               rows="10" cols="40" maxlength="1000"></textarea><br><br>
             </fieldset>
-            <input type="submit" value="SEND">
+            <input type="submit" value="Submit">
             </form>
           </div>
 
           <div class="reveal-if-active">
-            <form name="locationFeedbackForm">
+            <form name="locationFeedbackForm" action="fcgi.cpp" method="POST">
               <fieldset id="contactInfo">
                 <legend>Contact Information</legend><br>
                 Name:<br>
@@ -91,13 +94,13 @@
                 Who performed the service?<br>
                 <input id="box1" type="text" name="inEmployee"><br><br>
                 Would you like to leave a compliment or a complaint?<br><br>
-                <input type="radio" name="good-or-bad" value=Compliment>Compliment<br>
+                <input type="radio" name="good-or-bad" value=Compliment>Compliment<br><br>
                 <input type="radio" name="good-or-bad" value=Complaint>Complaint<br><br>
                 <textarea id="box3" type="text" name="inLocalComment"
                 placeholder="Once completed please press the submit button below..."
                 rows="10" cols="40" maxlength="1000"></textarea><br><br>
               </fieldset>
-              <input type="submit" value="SEND">
+              <input type="submit" value="Submit">
             </form>
           </div>
         </div>
