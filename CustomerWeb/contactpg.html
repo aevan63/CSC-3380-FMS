@@ -40,31 +40,66 @@
         <div id="main">
 
           <h2>We value your input</h2>
+          <br>
 
-          <form id="commentSec" action="" name="feedbackForm">
+          <div class="reveal-if-active">
+            <form name="productFeebackForm">
+              <fieldset id="contactInfo">
+                <legend>Contact Information</legend><br>
+                Name:<br>
+                <input id="box1" type="text" name="inName" placeholder="ex: John Smith"><br><br>
+                Email:<br>
+                <input id="box1" type="text" name="inEmail" placeholder="ex: JohnSmith@gmail.com"><br><br>
+                Phone:<br>
+                <input id="box1" type="text" name="inPhone" placeholder="ex: 999-999-9999"><br><br>
+              </fieldset><br><br>
+              <fieldset id="commentSection">
+              <legend>Comment Section</legend><br>
+              Product:<br>
+              <input id="box1" type="text" name="inProduct"><br><br>
+              Would you like to leave a compliment or a complaint?<br><br>
+              <input type="radio" name="good-or-bad" value=Compliment>Compliment<br><br>
+              <input type="radio" name="good-or-bad" value=Complaint>Complaint<br><br>
+              Please leave your comment below:<br>
+              <textarea id="box3" type="text" name="inProdComment"
+              placeholder="Once completed please press the submit button below..."
+              rows="10" cols="40" maxlength="1000"></textarea><br><br>
+            </fieldset>
+            <input type="submit" value="SEND">
+            </form>
+          </div>
 
-            <fieldset id="contactInfo">
-              <legend>Contact Information</legend><br>
-              Name:<br>
-              <input id="box1" type="text" name="inName" placeholder="ex: John Smith"><br><br>
-              Email:<br>
-              <input id="box2" type="email" name="inEmail" placeholder="ex: JohnSmith@gmail.com"><br><br>
-          </fieldset><br><br>
-/*Note: there isnt anything in the action field*/
-          <fieldset id="comment" action="">
-            <legend>Leave a comment below!</legend><br>
-            Comment Type:
-            <select>
-              <option value="question">Question</option>
-              <option value="comment">Comment</option>
-              <option value="concern">Concern</option>
-            </select><br><br>
-            <textarea id="box3" action="/" type="text" name="inText"
-            placeholder="Once completed please press the submit button below..."
-            rows="10" cols="40" maxlength="1000"></textarea><br><br>
-          </fieldset><br><br>
-          <input type="submit" value="SEND">
-          </form>
+          <div class="reveal-if-active">
+            <form name="locationFeedbackForm">
+              <fieldset id="contactInfo">
+                <legend>Contact Information</legend><br>
+                Name:<br>
+                <input id="box1" type="text" name="inName" placeholder="ex: John Smith"><br><br>
+                Email:<br>
+                <input id="box1" type="text" name="inEmail" placeholder="ex: JohnSmith@gmail.com"><br><br>
+                Phone:<br>
+                <input id="box1" type="text" name="inPhone" placeholder="ex: 999-999-9999"><br>
+              </fieldset><br><br>
+              <fieldset id="commentSection">
+                <legend>Comment Section</legend><br>
+                Location:<br>
+                <input id="box1" type="text" name="inLocation"><br><br>
+                *Optional:<br>
+                What service was performed?<br>
+                <input id="box1" type="text" name="inService"><br><br>
+                *Optional:<br>
+                Who performed the service?<br>
+                <input id="box1" type="text" name="inEmployee"><br><br>
+                Would you like to leave a compliment or a complaint?<br><br>
+                <input type="radio" name="good-or-bad" value=Compliment>Compliment<br>
+                <input type="radio" name="good-or-bad" value=Complaint>Complaint<br><br>
+                <textarea id="box3" type="text" name="inLocalComment"
+                placeholder="Once completed please press the submit button below..."
+                rows="10" cols="40" maxlength="1000"></textarea><br><br>
+              </fieldset>
+              <input type="submit" value="SEND">
+            </form>
+          </div>
         </div>
 
       </div>
