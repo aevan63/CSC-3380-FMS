@@ -4,66 +4,109 @@
 #include <iostream>
 
 using namespace std;
-BuildHTML::BuildHTML(const Fastcgipp::Http::Environment& environment()) {
-	string line;
-	ifstream file;
-	file.open(uri);
-	if (file.is_open()) {
-		while(getline(file,line)) {
-			html << line;
+buildHTML::buildHTML(const Fastcgipp::Http::Environment& environment(), std::string website) {
+	string   currentLine;
+	ifstream preFile;
+	uri = (std::string)environment().requestUri;
+	tr1::regex r(website+"(.*)");
+	string re = "";
+	uri = tr1::regex_replace(uri,r,re);
+	preFile.open(uri);
+	if (preFile.is_open()) {
+		while(getline(preFile,currentLine)) {
+			html << currentLine;
 		}
 	}
 
+	insertNum = -1;
+	HTMLdoc = htmlReadMemory((char*)html.c_str(), sizeof((char*)html.c_str()), uri.c_str(), "UTF-8", HTML_PARSE_RECOVER | HTML_PARSE_NOERROR | HTML_PARSE_NOWARNING);
 }
 
-BuildHTML::BuildHTML(MYSQL_ROW* RES, const Fastcgipp::Http::Environment& environment(), std::string website) {
-	this->website =  website+"(.*)";
-	uri = tr1::regex_replace(environment().requestUri,this->website,"");
-	string line;
-	ifstream file;
-	file.open(uri);
-	if (file.is_open()) {
-		while(getline(file,line)) {
-			html << line;
-		}
-	}
-	stringRES = new string(sizeof(RES));
-	for (int i = 0; i<sizeof(RES);++i) {
-		stringRES[i] = RES[i];
-	}
-}
-string* BuildHTML::buildFromSQL() {
-	//code goes here
-	//will likely use Christian's feedback classes here I think
-	return stringRES;
-}
+buildHTML::buildHTML(MYSQL_ROW* RES, int numRows, int* numFields, const Fastcgipp::Http::Environment& environment(), std::string website, string feedbackForm) {
+	string   currentLine;
+	string   insert;
 
-string BuildHTML::fixHTML(string* HTMLRes) {
-	tr1::regex tempR;
-	std::basic_string tempS;
-	for (int i = 0;i<sizeof(parameters);++i) {
-		tempR(uri);
-		if (tr1::regex_match(parameters[i], tempR)) {
-			++i;
-			tempR("(locator = )(.*)");
-			if(regex_match(parameters[i],tempR)) {
-				tempS = parameters[i];
-				tr1::regex_replace(tempS,tempR,"");
-				break;
+	uri = environment().requestUri;
+	tr1::regex r(website+"(.*)");
+	string re = "";
+	uri = tr1::regex_replace(uri,r,re);
+	ifstream preFile;
+	preFile.open(uri);
+	if (preFile.is_open()) {
+			while(getline(preFile,currentLine)) {
+				html << currentLine;
 			}
-		}
 	}
-	tr1::regex locator(tempS);
-	//obviously needs to be more complicated than just using the first row of the returned values
-	tr1::regex_replace(html,locator,HTMLRes[0]);
-	return html;
+	/*while (preFile >> currentLine) {
+		workingFile = workingFile+currentLine;
+	}*/
+	// string lines = RES;
+	HTMLdoc = htmlReadMemory((char*)html.c_str(), sizeof((char*)html.c_str()), uri.c_str(), "UTF-8", HTML_PARSE_RECOVER | HTML_PARSE_NOERROR | HTML_PARSE_NOWARNING);
+	htmlNodePtr root = xmlDocGetRootElement(HTMLdoc);
+	xmlChar** insertStrings = buildFromSQL(RES, numRows, numFields);
+	htmlNodePtr insertLocation;
+
+
+	tr1::regex Feedback = ("(.*)"+feedbackForm+"(.*)");
+	if (tr1::regex_match(environment().gets, Feedback)) {
+		insertLocation = findInsert(root, feedbackForm);
+		performInsert(insertLocation, insertStrings);
+	}
+}
+void buildHTML::performInsert(htmlNodePtr sibling, xmlChar** newNodes) {
+	xmlChar* tmpStr;
+	char* encoding = "UTF-8";
+	// htmlDocPtr tmpDoc;
+	htmlNodePtr newNode;
+	htmlNodePtr newChildNode;
+	int length;
+	for (int i = 0; i < insertNum; ++i) {
+		tmpStr = newNodes[i];
+		//tmpDoc = htmlReadMemory((char*)tmpStr, sizeof((char*)tmpStr), NULL, encoding, 0);
+	    //newNode = xmlDocCopyNode(xmlDocGetRootElement(tmpDoc), parent->doc,1);
+		// xmlFreeDoc(tmpDoc);
+		newNode = xmlNewNode(0, BAD_CAST "p");
+		newChildNode = xmlNewText( BAD_CAST tmpStr);
+		xmlAddChild(newNode, newChildNode);
+		xmlAddPrevSibling(sibling, newNode);
+	}
 }
 
-string BuildHTML::getHtml() {
-	return html;
+htmlNodePtr buildHTML::findInsert(htmlNodePtr root, string matchName) {
+	htmlNodePtr tmpNode = root;
+	while(tmpNode != NULL) {
+		if(!xmlStrcmp(tmpNode->name, (const xmlChar*)matchName.c_str())) {
+			return tmpNode;
+		}
+		tmpNode = tmpNode->next;
+	}
+	if (tmpNode->children == NULL) {
+		return nullptr;
+	}
+	return (findInsert(tmpNode->children, matchName));
 }
 
-string BuildHTML::geturi() {
+
+xmlChar** buildHTML::buildFromSQL(MYSQL_ROW* stringRes, int numRows, int* numFields) {
+	xmlChar* tempString;
+    xmlChar* htmlRes[numRows];
+    htmlDocPtr tmpDoc;
+    insertNum = numRows;
+	for (int i = 0; i < numRows; ++i) {
+		tempString = new xmlChar[(sizeof(stringRes[i])+10)/sizeof(stringRes[i][0])];
+		for(int j = 0; j < numFields[i]; ++j) {
+			tempString += stringRes[i][j];
+		}
+		htmlRes[i] = tempString;
+	    delete[] tempString;
+	}
+	return htmlRes;
+}
+
+htmlDocPtr buildHTML::getHtml() {
+	return HTMLdoc;
+}
+
+string buildHTML::geturi() {
 	return uri;
 }
-
