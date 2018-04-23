@@ -17,7 +17,6 @@
 #include "LocationFeedback.h"
 #include "ProductFeedback.h"
 
-#endif
 
 using namespace std;
 
@@ -45,3 +44,4 @@ class BuildHTML {
 
 		string geturi();
 };
+#endif
