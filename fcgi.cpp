@@ -17,17 +17,17 @@ class BuildResponse: public Fastcgipp::Request<char> {
 	//with the fastcgi++ library the response method of any request class
 	//seems to be called automatically when it is needed by the manager
 	bool response() {
-	string website = "FMS.com"; //placeholder, ofc.
-	MariaDB sqlObj = MariaDB();
+		string website = "FMS.com"; //placeholder, ofc.
+		MariaDB sqlObj = MariaDB();
         BuildQuery queryizer = BuildQuery(environment().gets, environment().posts);
-	sqlObj.query(queryizer.getQuery());
-	BuildHTML page = BuildHTML(sqlObj.stringRES(), sqlObj.numRows, sqlObj.getNumFields(), environment(), website, "productFeedbackForm");
+		sqlObj.query(queryizer.getQuery());
+	    BuildHTML page = BuildHTML(environment().gets, environment().requestUri(), sqlObj.stringRES(), sqlObj.numRows, sqlObj.getNumFields(), website, "productFeedbackForm");
 
-	// out sends page to server w/ fastcgi++
-	out << page.getHtml();
+	        // out sends page to server w/ fastcgi++
+	    out << page.getHtml();
 
-	sqlObj.close();
-	return true;
+	    sqlObj.close();
+		return true;
 	}
 };
 
