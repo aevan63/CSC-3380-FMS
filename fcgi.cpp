@@ -19,20 +19,20 @@ class BuildResponse: public Fastcgipp::Request<char> {
 	bool response() {
 		string website = "FMS.com"; //placeholder, ofc.
 		MariaDB sqlObj = MariaDB();
-        BuildQuery queryizer = BuildQuery(environment().gets, environment().posts)
+        BuildQuery queryizer = BuildQuery(environment().gets, environment().posts);
 		sqlObj.query(queryizer.getQuery());
-	        buildHTML page = BuildHTML(sqlObj.stringRES(), sqlObj.numRows, sqlObj.getNumFields(), environment(), website);
+	    BuildHTML page = BuildHTML(sqlObj.stringRES(), sqlObj.numRows, sqlObj.getNumFields(), environment(), website, "productFeedbackForm");
 
 	        // out sends page to server w/ fastcgi++
-	        out << page.fixHTML(page.buildFromSQL());
+	    out << page.getHtml();
 
-	        sqlObj.close();
+	    sqlObj.close();
 		return true;
 	}
 };
 
 int main( int argc, char *argv[]) {
-         Fastcgipp::Manager<Queries> manager;
+         Fastcgipp::Manager<BuildResponse> manager;
          manager.setupSignals();
          manager.listen();
          manager.start();
