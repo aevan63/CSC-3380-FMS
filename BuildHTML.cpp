@@ -4,39 +4,44 @@
 #include <iostream>
 
 using namespace std;
-buildHTML::buildHTML(const Fastcgipp::Http::Environment& environment(), std::string website) {
+BuildHTML::BuildHTML(const multimap<string, string>& gets, const string requestUri, std::string website) {
 	string   currentLine;
 	ifstream preFile;
-	uri = (std::string)environment().requestUri;
+	ostringstream htmlStream;
+	uri = requestUri;
 	tr1::regex r(website+"(.*)");
 	string re = "";
 	uri = tr1::regex_replace(uri,r,re);
 	preFile.open(uri);
 	if (preFile.is_open()) {
 		while(getline(preFile,currentLine)) {
-			html << currentLine;
+			htmlStream << currentLine;
 		}
 	}
-
+	html = htmlStream.str();
 	insertNum = -1;
 	HTMLdoc = htmlReadMemory((char*)html.c_str(), sizeof((char*)html.c_str()), uri.c_str(), "UTF-8", HTML_PARSE_RECOVER | HTML_PARSE_NOERROR | HTML_PARSE_NOWARNING);
 }
 
-buildHTML::buildHTML(MYSQL_ROW* RES, int numRows, int* numFields, const Fastcgipp::Http::Environment& environment(), std::string website, string feedbackForm) {
+BuildHTML::BuildHTML(const multimap<string, string>& gets, const string requestUri, MYSQL_ROW* RES, int numRows, int* numFields, std::string website, string feedbackForm) {
 	string   currentLine;
 	string   insert;
-
-	uri = environment().requestUri;
+	ostringstream htmlStream;
+    GETdata = gets;
+	uri = requestUri;
 	tr1::regex r(website+"(.*)");
 	string re = "";
+	multimap<string, string>::iterator it;
 	uri = tr1::regex_replace(uri,r,re);
 	ifstream preFile;
 	preFile.open(uri);
 	if (preFile.is_open()) {
 			while(getline(preFile,currentLine)) {
-				html << currentLine;
+				htmlStream << currentLine;
 			}
 	}
+	html = htmlStream.str();
+
 	/*while (preFile >> currentLine) {
 		workingFile = workingFile+currentLine;
 	}*/
@@ -46,14 +51,12 @@ buildHTML::buildHTML(MYSQL_ROW* RES, int numRows, int* numFields, const Fastcgip
 	xmlChar** insertStrings = buildFromSQL(RES, numRows, numFields);
 	htmlNodePtr insertLocation;
 
-
-	tr1::regex Feedback = ("(.*)"+feedbackForm+"(.*)");
-	if (tr1::regex_match(environment().gets, Feedback)) {
-		insertLocation = findInsert(root, feedbackForm);
-		performInsert(insertLocation, insertStrings);
-	}
+	it = GETdata.find(feedbackForm);
+	string feedback = it->second;
+	insertLocation = findInsert(root, feedback);
+	performInsert(insertLocation, insertStrings);
 }
-void buildHTML::performInsert(htmlNodePtr sibling, xmlChar** newNodes) {
+void BuildHTML::performInsert(htmlNodePtr sibling, xmlChar** newNodes) {
 	xmlChar* tmpStr;
 	char* encoding = "UTF-8";
 	// htmlDocPtr tmpDoc;
@@ -72,7 +75,7 @@ void buildHTML::performInsert(htmlNodePtr sibling, xmlChar** newNodes) {
 	}
 }
 
-htmlNodePtr buildHTML::findInsert(htmlNodePtr root, string matchName) {
+htmlNodePtr BuildHTML::findInsert(htmlNodePtr root, string matchName) {
 	htmlNodePtr tmpNode = root;
 	while(tmpNode != NULL) {
 		if(!xmlStrcmp(tmpNode->name, (const xmlChar*)matchName.c_str())) {
@@ -87,7 +90,8 @@ htmlNodePtr buildHTML::findInsert(htmlNodePtr root, string matchName) {
 }
 
 
-xmlChar** buildHTML::buildFromSQL(MYSQL_ROW* stringRes, int numRows, int* numFields) {
+xmlChar** BuildHTML::buildFromSQL(MYSQL_ROW* stringRes, int numRows, int* numFields) {
+	ostringstream tmpStream;
 	xmlChar* tempString;
     xmlChar* htmlRes[numRows];
     htmlDocPtr tmpDoc;
@@ -95,18 +99,19 @@ xmlChar** buildHTML::buildFromSQL(MYSQL_ROW* stringRes, int numRows, int* numFie
 	for (int i = 0; i < numRows; ++i) {
 		tempString = new xmlChar[(sizeof(stringRes[i])+10)/sizeof(stringRes[i][0])];
 		for(int j = 0; j < numFields[i]; ++j) {
-			tempString += stringRes[i][j];
+			tmpStream << stringRes[i][j];
 		}
 		htmlRes[i] = tempString;
 	    delete[] tempString;
 	}
+	tempString = (xmlChar*)tmpStream.str().c_str();
 	return htmlRes;
 }
 
-htmlDocPtr buildHTML::getHtml() {
+htmlDocPtr BuildHTML::getHtml() {
 	return HTMLdoc;
 }
 
-string buildHTML::geturi() {
+string BuildHTML::geturi() {
 	return uri;
 }
