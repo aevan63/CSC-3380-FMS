@@ -11,7 +11,7 @@
 #include <libxml/HTMLparser.h>
 #include <libxml/tree.h>
 //#include <libxml++/libxml++.h>
-#include <boost/regex.h>
+#include <boost/regex.hpp>
 #include <mysql.h>
 #include <fastcgi++/request.hpp>
 #include <fastcgi++/http.hpp>
