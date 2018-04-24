@@ -45,7 +45,7 @@ void BuildQuery::formToSQL() {
             isComplaint = true;
         else
             isComplaint = false;
-        if (POSTData.find("inLocation") != POSTData.end())
+        if (POSTData.find("prod-or-local")->second == "Location")
             isLocation = true;
         else
             isLocation = false;
@@ -66,7 +66,7 @@ void BuildQuery::formToSQL() {
         query << ", IsComplaint"
               << ") " << "values (";
         
-        it = POSTData.find("inText"); // Name needs to change in HTML or here
+        it = POSTData.find("inComment");
         query << "'" << it->second << "', ";
         it = POSTData.find("inName");
         query << "'" << it->second << "', ";
