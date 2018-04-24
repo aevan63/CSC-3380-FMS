@@ -9,9 +9,9 @@ BuildHTML::BuildHTML(const string requestUri, std::string website) {
 	ifstream preFile;
 	ostringstream htmlStream;
 	uri = requestUri;
-	tr1::regex r(website+"(.*)");
+	boost::regex r(website+"(.*)");
 	string re = "";
-	uri = tr1::regex_replace(uri,r,re);
+	uri = boost::regex_replace(uri,r,re);
 	preFile.open(uri);
 	if (preFile.is_open()) {
 		while(getline(preFile,currentLine)) {
@@ -29,10 +29,10 @@ BuildHTML::BuildHTML(const multimap<string, string>& gets, const string requestU
 	ostringstream htmlStream;
     GETdata = gets;
 	uri = requestUri;
-	tr1::regex r(website+"(.*)");
+	boost::regex r(website+"(.*)");
 	string re = "";
 	multimap<string, string>::iterator it;
-	uri = tr1::regex_replace(uri,r,re);
+	uri = boost::regex_replace(uri,r,re);
 	ifstream preFile;
 	preFile.open(uri);
 	if (preFile.is_open()) {
