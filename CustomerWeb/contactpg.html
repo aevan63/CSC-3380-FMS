@@ -6,7 +6,14 @@
     <title>This Is a Website</title>
 
     <script>
-    //for any javascript functions if needed
+      function activeProduct() {
+          document.getElementById('productFORM').style.display = 'block';
+          document.getElementById('locationFORM').style.display = 'none';
+      }
+      function activeLocation(){
+        document.getElementById('productFORM').style.display = 'none';
+        document.getElementById('locationFORM').style.display = 'block';
+      }
     </script>
 
     <link rel="stylesheet" type="text/css" href="websiteStyle.css" />
@@ -42,10 +49,10 @@
           <h2>We value your input</h2>
           <br><br>
           Are you leaving a comment about a product or about one of our locations?<br><br>
-          <input type="radio" name="prod-or-local" value="Product">Product<br><br>
-          <input type="radio" name="prod-or-local" value="Location">Location<br><br>
+          <input type="radio" name="prod-or-local" value="Product" onclick="activeProduct();">Product<br><br>
+          <input type="radio" name="prod-or-local" value="Location" onclick="activeLocation()">Location<br><br>
 
-          <div class="reveal-if-active">
+          <div id="productFORM" class="reveal-if-active">
             <form name="productFeebackForm" action="fcgi.cpp" method="POST">
               <fieldset id="contactInfo">
                 <legend>Contact Information</legend><br>
@@ -72,7 +79,7 @@
             </form>
           </div>
 
-          <div class="reveal-if-active">
+          <div id="locationFORM" class="reveal-if-active">
             <form name="locationFeedbackForm" action="fcgi.cpp" method="POST">
               <fieldset id="contactInfo">
                 <legend>Contact Information</legend><br>

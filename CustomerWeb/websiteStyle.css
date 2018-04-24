@@ -56,6 +56,9 @@ li a:hover {
 /*NavBar style*/
 
 /*contact style*/
+.reveal-if-active{
+  display: none;
+}
 #contactInfo{
   box-sizing: border-box;
   border: 2px solid #ccc;
