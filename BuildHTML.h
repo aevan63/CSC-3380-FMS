@@ -4,6 +4,7 @@
 #define GETHTML_H
 
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <map>
 #include <libxml/tree.h>
