@@ -4,7 +4,6 @@
 #include <iostream>
 #include <fstream>
 #include <fastcgi++/request.hpp> // from https://github.com/eddic/fastcgipp
-#include <fastcgi++/manager.hpp>
 #include <fastcgi++/http.hpp>
 #include <mysql.h> // from MariaDB's website
 #include "MariaDBInitializer.h"
@@ -33,11 +32,13 @@ class BuildResponse: public Fastcgipp::Request<char> {
 	}
 };
 
-int main( int argc, char *argv[]) {
+#include <fastcgi++/manager.hpp>
+int main() {
          Fastcgipp::Manager<BuildResponse> manager;
          manager.setupSignals();
          manager.listen();
          manager.start();
          manager.join();
+
          return 0;
 }
