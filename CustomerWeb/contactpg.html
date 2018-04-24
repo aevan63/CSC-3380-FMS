@@ -23,14 +23,12 @@
     <div id="background">
 
       <div id="topHeader">
-
-        <div id="LSU">
-          <h1 style="font-size:9vw">LSU MERCHANDISE</h1>
+        <div id="websiteName">
+          <h1 style="font-size:8vw">GRANT'S GIZMOS</h1>
         </div>
-        <div id="welcome">
-            <h2>GEAUX TIGERS</h2>
+        <div id="subtitle">
+            <h2 style="font-size:3vw">Are YOU Gonna Need It?</h2>
         </div>
-
       </div>
 
       <div id="innerBody">
@@ -44,9 +42,9 @@
           </ul>
         </div>
 
-        <div id="main">
+        <div id="contactMain">
 
-          <h2>We value your input</h2>
+          <h2>Help us help you!</h2>
           <br><br>
           Are you leaving a comment about a product or about one of our locations?<br><br>
           <input type="radio" name="prod-or-local" value="Product" onclick="activeProduct();">Product<br><br>
@@ -57,24 +55,25 @@
               <fieldset id="contactInfo">
                 <legend>Contact Information</legend><br>
                 Name:<br>
-                <input id="box1" type="text" name="inName" placeholder="ex: John Smith"><br><br>
+                <input id="smallTxtBox" type="text" name="inName" placeholder="ex: John Smith"><br><br>
                 Email:<br>
-                <input id="box1" type="text" name="inEmail" placeholder="ex: JohnSmith@gmail.com"><br><br>
+                <input id="smallTxtBox" type="text" name="inEmail" placeholder="ex: JohnSmith@gmail.com"><br><br>
                 Phone:<br>
-                <input id="box1" type="text" name="inPhone" placeholder="ex: 999-999-9999"><br><br>
+                <input id="smallTxtBox" type="text" name="inPhone" placeholder="ex: 999-999-9999"><br><br>
               </fieldset><br><br>
               <fieldset id="commentSection">
               <legend>Comment Section</legend><br>
               Product:<br>
-              <input id="box1" type="text" name="inProduct"><br><br>
+              <input id="smallTxtBox" type="text" name="inProduct"><br><br>
               Would you like to leave a compliment or a complaint?<br><br>
               <input type="radio" name="good-or-bad" value=Compliment>Compliment<br><br>
               <input type="radio" name="good-or-bad" value=Complaint>Complaint<br><br>
               Please leave your comment below:<br>
-              <textarea id="box3" type="text" name="inProdComment"
+              <textarea id="largeTxtBox" type="text" name="inProdComment"
               placeholder="Once completed please press the submit button below..."
               rows="10" cols="40" maxlength="1000"></textarea><br><br>
             </fieldset>
+            <br>
             <input type="submit" value="Submit">
             </form>
           </div>
@@ -84,29 +83,30 @@
               <fieldset id="contactInfo">
                 <legend>Contact Information</legend><br>
                 Name:<br>
-                <input id="box1" type="text" name="inName" placeholder="ex: John Smith"><br><br>
+                <input id="smallTxtBox" type="text" name="inName" placeholder="ex: John Smith"><br><br>
                 Email:<br>
-                <input id="box1" type="text" name="inEmail" placeholder="ex: JohnSmith@gmail.com"><br><br>
+                <input id="smallTxtBox" type="text" name="inEmail" placeholder="ex: JohnSmith@gmail.com"><br><br>
                 Phone:<br>
-                <input id="box1" type="text" name="inPhone" placeholder="ex: 999-999-9999"><br>
+                <input id="smallTxtBox" type="text" name="inPhone" placeholder="ex: 999-999-9999"><br><br>
               </fieldset><br><br>
               <fieldset id="commentSection">
                 <legend>Comment Section</legend><br>
                 Location:<br>
-                <input id="box1" type="text" name="inLocation"><br><br>
+                <input id="smallTxtBox" type="text" name="inLocation"><br><br>
                 *Optional:<br>
                 What service was performed?<br>
-                <input id="box1" type="text" name="inService"><br><br>
+                <input id="smallTxtBox" type="text" name="inService"><br><br>
                 *Optional:<br>
                 Who performed the service?<br>
-                <input id="box1" type="text" name="inEmployee"><br><br>
+                <input id="smallTxtBox" type="text" name="inEmployee"><br><br>
                 Would you like to leave a compliment or a complaint?<br><br>
                 <input type="radio" name="good-or-bad" value=Compliment>Compliment<br><br>
                 <input type="radio" name="good-or-bad" value=Complaint>Complaint<br><br>
-                <textarea id="box3" type="text" name="inLocalComment"
+                <textarea id="largeTxtBox" type="text" name="inLocalComment"
                 placeholder="Once completed please press the submit button below..."
                 rows="10" cols="40" maxlength="1000"></textarea><br><br>
               </fieldset>
+              <br>
               <input type="submit" value="Submit">
             </form>
           </div>
@@ -116,5 +116,7 @@
 
     </div>
   </body>
-
+  <footer id="footer">
+    <h2>CSC 3380</h2>
+  </footer>
 </html>

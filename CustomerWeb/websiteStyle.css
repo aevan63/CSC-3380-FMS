@@ -1,31 +1,59 @@
+/*WebsiteHeader*/
 @font-face{
-  font-family: "Capture It";
-  src: url("Capture_it.ttf")
+  font-family: "Perfect Dark";
+  src: url("perfect-dark-brk/pdark.ttf")
+}
+@font-face{
+  font-family: "Vanish";
+  src: url("vanish/VANISH.ttf")
+}
+@font-face{
+  font-family: "Maniac";
+  src: url("maniac/ManiacGrunged.ttf")
 }
 #topHeader{
+  background-image: url("TigerEye.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #ffe177;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+#websiteName{
+  font-family: "Perfect Dark", serif;
+  text-align: center;
+}
+#subtitle{
+  font-family: serif;
+  text-align: center;
+  letter-spacing: 8px;
+  color: #ffeeac;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background-color: #c7b05d;
+}
+/*WebsiteFooter*/
+#footer{
   background-color: #666;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-#LSU{
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
-  font-family: "Capture It", serif;
-  font-size: 40px;
-  letter-spacing: 9px;
 }
-#welcome{
-  text-align: center;
-
+/*WebsiteInnerBody*/
+#innerBody{
+  height: 1500px;
 }
 
-/*NavBar style*/
+/*Home Page: NavBar style*/
 #navigation{
+  font-family: fantasy;
+  letter-spacing: 2px;
   text-align: center;
   position: sticky;
   top: 0px;
 }
 .active{
-  background-color: #4CAF50;
+  background-color: #8184dc;
   color: white;
 }
 
@@ -34,7 +62,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #494799;
     position: sticky;
 }
 
@@ -51,11 +79,10 @@ li a {
 }
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-    background-color: #111;
+    background-color: #312f67;
 }
-/*NavBar style*/
 
-/*contact style*/
+/*Contact page: form style*/
 .reveal-if-active{
   display: none;
 }
@@ -64,7 +91,7 @@ li a:hover {
   border: 2px solid #ccc;
   border-radius: 4px;
 }
-#box1{
+#smallTxtBox{
   width: 250px;
   padding: 10px 15px;
   margin: 8px 0;
@@ -73,22 +100,12 @@ li a:hover {
   border-radius: 4px;
   background-color: #f8f8f8;
 }
-#box2{
-  width: 250px;
-  padding: 10px 15px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-}
-
-#comment{
+#commentSection{
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
 }
-#box3{
+#largeTxtBox{
   width: 600px;
   max-height: 200px;
   padding: /*up*/10px /*left*/15px /*down*/200px /*right*/15px;
@@ -98,4 +115,17 @@ li a:hover {
   background-color: #f8f8f8;
   resize: none;
 }
-/*contact style*/
+
+/*Shop page*/
+#main{
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 20px
+}
+.centerImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 20%;
+    padding-top: 100px;
+}
