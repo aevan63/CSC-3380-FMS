@@ -1,9 +1,12 @@
+<!--Written by Tania Wilson-->
+<!--Edited by Alexis Evans-->
+
 <!DOCTYPE html>
 <html>
 
   <head>
 
-    <title>This Is a Website</title>
+    <title>Grant's Gizmos</title>
 
     <script>
       function activeProduct() {
@@ -55,7 +58,7 @@
               <fieldset id="contactInfo">
                 <legend>Contact Information</legend><br>
                 Name:<br>
-                <input id="smallTxtBox" type="text" name="inName" placeholder="ex: John Smith"><br><br>
+                <input id="smallTxtBox" type="text" name="inName" placeholder="ex: John Smith" required><br><br>
                 Email:<br>
                 <input id="smallTxtBox" type="text" name="inEmail" placeholder="ex: JohnSmith@gmail.com"><br><br>
                 Phone:<br>
@@ -64,14 +67,14 @@
               <fieldset id="commentSection">
               <legend>Comment Section</legend><br>
               Product:<br>
-              <input id="smallTxtBox" type="text" name="inProduct"><br><br>
+              <input id="smallTxtBox" type="text" name="inProduct" required><br><br>
               Would you like to leave a compliment or a complaint?<br><br>
               <input type="radio" name="good-or-bad" value=Compliment>Compliment<br><br>
               <input type="radio" name="good-or-bad" value=Complaint>Complaint<br><br>
               Please leave your comment below:<br>
               <textarea id="largeTxtBox" type="text" name="inComment"
               placeholder="Once completed please press the submit button below..."
-              rows="10" cols="40" maxlength="1000"></textarea><br><br>
+              rows="10" cols="40" maxlength="1000" required></textarea><br><br>
             </fieldset>
             <br>
             <input type="submit" value="Submit">
@@ -83,7 +86,7 @@
               <fieldset id="contactInfo">
                 <legend>Contact Information</legend><br>
                 Name:<br>
-                <input id="smallTxtBox" type="text" name="inName" placeholder="ex: John Smith"><br><br>
+                <input id="smallTxtBox" type="text" name="inName" placeholder="ex: John Smith" required><br><br>
                 Email:<br>
                 <input id="smallTxtBox" type="text" name="inEmail" placeholder="ex: JohnSmith@gmail.com"><br><br>
                 Phone:<br>
@@ -92,7 +95,7 @@
               <fieldset id="commentSection">
                 <legend>Comment Section</legend><br>
                 Location:<br>
-                <input id="smallTxtBox" type="text" name="inLocation"><br><br>
+                <input id="smallTxtBox" type="text" name="inLocation" required><br><br>
                 *Optional:<br>
                 What service was performed?<br>
                 <input id="smallTxtBox" type="text" name="inService"><br><br>
@@ -104,7 +107,7 @@
                 <input type="radio" name="good-or-bad" value=Complaint>Complaint<br><br>
                 <textarea id="largeTxtBox" type="text" name="inComment"
                 placeholder="Once completed please press the submit button below..."
-                rows="10" cols="40" maxlength="1000"></textarea><br><br>
+                rows="10" cols="40" maxlength="1000" required></textarea><br><br>
               </fieldset>
               <br>
               <input type="submit" value="Submit">
