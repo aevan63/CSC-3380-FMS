@@ -90,11 +90,15 @@ private:
 			for (multimap<string, string>::iterator it = Getdata.begin(); it!=Getdata.end();++it) {
 			    	out << "<h2>" << it->second << ":</h2>";
 			}
-			MYSQL_ROW* rows = sqlObj.stringRES();
+			MYSQL_ROW row;
 			int* fields = sqlObj.getNumFields();
-			for (int i = 0; i < sqlObj.getNumRows(); ++i) {
-				for (int j = 0; j < fields[0]; ++j) {
-					out << "<h1>" << rows[i][j]<< "</h1>";
+			int numFields = fields[0];
+			while ((row = mysql_fetch_row(sqlObj.queryResult))) {
+				unsigned long *lengths;
+				lengths = mysql_fetch_lengths(sqlObj.queryResult);
+				for (int i = 0; i < numFields; ++i) {
+					if (row[i])
+					 out << row[i];
 				}
 			}
 			out << "</div></html>";
