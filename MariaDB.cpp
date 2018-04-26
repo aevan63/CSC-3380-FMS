@@ -26,7 +26,7 @@ void MariaDB::query(string query) throw (MariaDBException) {
      throw MariaDBException("Query " + query + " failed");*/
     queryResult = mysql_store_result(conn);
     if (!queryResult)
-        numRows = 0;
+        numRows = mysql_affected_rows(queryResult);
     else
         numRows = mysql_num_rows(queryResult);
 }
