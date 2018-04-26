@@ -1,0 +1,127 @@
+//Written by Jackie Bowers
+
+#include "BuildHTML.h"
+#include <iostream>
+
+using namespace std;
+BuildHTML::BuildHTML(const multimap<string, string>& posts) {
+	string   currentLine;
+	ifstream preFile;
+	ostringstream htmlStream;
+
+	htmlStream << "<!DOCTYPE html><html><head>";
+    htmlStream << "<title>This Is a Website</title>";
+    htmlStream << "<script></script>";
+    htmlStream << "<link rel=\"stylesheet\" type=\"text/css\" href=\"websiteStyle.css\" />";
+    htmlStream << "<head><body><div id=\"background\">";
+    htmlStream << "<div id=\"topHeader\"><div id=\"websiteName\">";
+    htmlStream << "<h1 style=\"font-size:8vw\">GRANT'S GIZMOS</h1>";
+    htmlStream << "</div><div id=\"subtitle\">";
+    htmlStream << "<h2 style=\"font-size:3vw\">Are YOU Gonna Need It?</h2></div></div>";
+    htmlStream << "<div id=\"innerBody\"><div id=\"navigation\">";
+    htmlStream << "<ul style=\"font-size:2vw\">";
+    htmlStream << "<li><a href=\"homepg.html\">Home</a></li>";
+    htmlStream << "<li><a class=\"active\" href=\"shoppg.html\">Shop</a></li>";
+    htmlStream << "<li><a href=\"contactpg.html\">Contact</a></li>";
+    htmlStream << "<li><a href=\"aboutpg.html\">About</a></li></ul></div>";
+    htmlStream << "<div id=\"main\"><h2>Your feedback has been recieved!</h2>;";
+    Postdata = posts;
+    for (multimap<string, string>::iterator it = Postdata.begin(); it!=Postdata.end();++it) {
+    	htmlStream << "<h2>" << it->first << ":</h2>";
+    	htmlStream << "<h2>" << it->second << ":</h2>";
+    }
+    htmlStream << "</div></body></html>";
+	html = htmlStream.str();
+	//insertNum = -1;
+	HTMLdoc = htmlReadMemory((char*)html.c_str(), sizeof((char*)html.c_str()), uri.c_str(), "UTF-8", HTML_PARSE_RECOVER | HTML_PARSE_NOERROR | HTML_PARSE_NOWARNING);
+}
+
+BuildHTML::BuildHTML(const multimap<string, string>& gets, const string requestUri, MYSQL_ROW* RES, int numRows, int* numFields, std::string website, string feedbackForm) {
+	string   currentLine;
+	string   insert;
+	ostringstream htmlStream;
+    GETdata = gets;
+	/*uri = requestUri;
+	boost::regex r(website+"(.*)");
+	string re = "";
+	multimap<string, string>::iterator it;
+	uri = boost::regex_replace(uri,r,re);
+	ifstream preFile;
+	preFile.open(uri);
+	if (preFile.is_open()) {
+			while(getline(preFile,currentLine)) {
+				htmlStream << currentLine;
+			}
+	}
+	html = htmlStream.str();
+
+	// string lines = RES;
+	HTMLdoc = htmlReadMemory((char*)html.c_str(), sizeof((char*)html.c_str()), uri.c_str(), "UTF-8", HTML_PARSE_RECOVER | HTML_PARSE_NOERROR | HTML_PARSE_NOWARNING);
+	htmlNodePtr root = xmlDocGetRootElement(HTMLdoc);
+	xmlChar** insertStrings = buildFromSQL(RES, numRows, numFields);
+	htmlNodePtr insertLocation;
+
+	it = GETdata.find(feedbackForm);
+	string feedback = it->second;
+	insertLocation = findInsert(root, feedback);
+	performInsert(insertLocation, insertStrings); */
+}
+void BuildHTML::performInsert(htmlNodePtr sibling, xmlChar** newNodes) {
+	xmlChar* tmpStr;
+	char* encoding = "UTF-8";
+	// htmlDocPtr tmpDoc;
+	htmlNodePtr newNode;
+	htmlNodePtr newChildNode;
+	int length;
+	for (int i = 0; i < insertNum; ++i) {
+		tmpStr = newNodes[i];
+		//tmpDoc = htmlReadMemory((char*)tmpStr, sizeof((char*)tmpStr), NULL, encoding, 0);
+	    //newNode = xmlDocCopyNode(xmlDocGetRootElement(tmpDoc), parent->doc,1);
+		// xmlFreeDoc(tmpDoc);
+		newNode = xmlNewNode(0, BAD_CAST "p");
+		newChildNode = xmlNewText( BAD_CAST tmpStr);
+		xmlAddChild(newNode, newChildNode);
+		xmlAddPrevSibling(sibling, newNode);
+	}
+}
+
+htmlNodePtr BuildHTML::findInsert(htmlNodePtr root, string matchName) {
+	htmlNodePtr tmpNode = root;
+	while(tmpNode != NULL) {
+		if(!xmlStrcmp(tmpNode->name, (const xmlChar*)matchName.c_str())) {
+			return tmpNode;
+		}
+		tmpNode = tmpNode->next;
+	}
+	if (tmpNode->children == NULL) {
+		return nullptr;
+	}
+	return (findInsert(tmpNode->children, matchName));
+}
+
+
+xmlChar** BuildHTML::buildFromSQL(MYSQL_ROW* stringRes, int numRows, int* numFields) {
+	ostringstream tmpStream;
+	xmlChar* tempString;
+    xmlChar* htmlRes[numRows];
+    htmlDocPtr tmpDoc;
+    insertNum = numRows;
+	for (int i = 0; i < numRows; ++i) {
+		tempString = new xmlChar[(sizeof(stringRes[i])+10)/sizeof(stringRes[i][0])];
+		for(int j = 0; j < numFields[i]; ++j) {
+			tmpStream << stringRes[i][j];
+		}
+		htmlRes[i] = tempString;
+	    delete[] tempString;
+	}
+	tempString = (xmlChar*)tmpStream.str().c_str();
+	return htmlRes;
+}
+
+string BuildHTML::getHtml() {
+	return html;
+}
+
+string BuildHTML::geturi() {
+	return uri;
+}
