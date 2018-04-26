@@ -24,26 +24,27 @@ void MariaDB::query(string query) throw (MariaDBException) {
     /*if (state)
      throw MariaDBException("Query " + query + " failed");*/
     queryResult = mysql_store_result(conn);
+    numRows = mysql_num_rows(queryResult);
 }
 
 void MariaDB::close() {
+    mysql_free_result(queryResult);
     mysql_close(conn);
 }
 
 MYSQL_ROW* MariaDB::stringRES() {
     MYSQL_ROW row;
-    numRows = mysql_num_rows(queryResult);
     int numFields = mysql_num_fields(queryResult);
     MYSQL_ROW* rows = new MYSQL_ROW[numRows];
     
-    for (int i = 0; i<numRows; ++i)
+    for (int i = 0; i < numRows; i++)
         rows[i] = mysql_fetch_row(queryResult);
     return rows;
 }
 
 int* MariaDB::getNumFields() {
     int numFields[numRows];
-    for (unsigned int i = 0; i < numRows; ++i) {
+    for (int i = 0; i < numRows; i++) {
         numFields[i] = mysql_num_fields(queryResult);
     }
     return numFields;
