@@ -4,6 +4,8 @@
 #include <iostream>
 
 using namespace std;
+BuildHTML::BuildHTML() {};
+
 BuildHTML::BuildHTML(const string requestUri, std::string website) {
 	string   currentLine;
 	ifstream preFile;
