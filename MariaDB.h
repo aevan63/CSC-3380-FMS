@@ -16,9 +16,9 @@ public:
 class MariaDB {
 private:
     MYSQL* conn;
-    MYSQL_RES* queryResult;
     int numRows;
 public:
+    MYSQL_RES* queryResult;
     int getNumRows();
     int* getNumFields();
     MariaDB() throw (MariaDBException);
