@@ -91,12 +91,10 @@ private:
 			    	out << "<h2>" << it->second << ":</h2>";
 			}
 			MYSQL_ROW row;
-			int* fields = sqlObj.getNumFields();
-			int numFields = fields[0];
 			while ((row = mysql_fetch_row(sqlObj.queryResult))) {
 				unsigned long *lengths;
 				lengths = mysql_fetch_lengths(sqlObj.queryResult);
-				for (int i = 0; i < numFields; ++i) {
+				for (int i = 0; i < mysql_num_fields(sqlObj.queryResult); ++i) {
 					if (row[i])
 					 out << row[i];
 				}
