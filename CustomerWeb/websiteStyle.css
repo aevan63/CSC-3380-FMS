@@ -1,15 +1,15 @@
 /*WebsiteHeader*/
 @font-face{
-  font-family: "Perfect Dark";
-  src: url("perfect-dark-brk/pdark.ttf")
+  font-family: "Cyborg";
+  src: url("cyborg/CYBORG.ttf")
 }
 @font-face{
-  font-family: "Vanish";
-  src: url("vanish/VANISH.ttf")
+  font-family: "Code Light";
+  src: url("code/CODE Light.otf")
 }
 @font-face{
-  font-family: "Maniac";
-  src: url("maniac/ManiacGrunged.ttf")
+  font-family: "Code Bold";
+  src: url("code/CODE Bold.otf")
 }
 #topHeader{
   background-image: url("TigerEye.png");
@@ -20,11 +20,12 @@
   padding-bottom: 10px;
 }
 #websiteName{
-  font-family: "Perfect Dark", serif;
+  font-family: "Cyborg", serif;
   text-align: center;
+  color: #131313;
 }
 #subtitle{
-  font-family: serif;
+  font-family: "Code Light", sans-serif;
   text-align: center;
   letter-spacing: 8px;
   color: #ffeeac;
@@ -32,6 +33,11 @@
   padding-bottom: 1px;
   background-color: #c7b05d;
 }
+/*WebsiteInnerBody*/
+#innerBody{
+  height: 1540px;
+}
+
 /*WebsiteFooter*/
 #footer{
   background-color: #666;
@@ -39,17 +45,31 @@
   padding-bottom: 20px;
   text-align: center;
 }
-/*WebsiteInnerBody*/
-#innerBody{
-  height: 1500px;
-}
 
+/*Home Page: main style*/
+.centerHomeImage{
+  padding-top: 170px;
+  display: block;
+  margin-left: auto;
+  width: 950px;
+  opacity: 0.3;
+}
+#Motto{
+  z-index: 4;
+  position: absolute;
+  padding-top: 500px;
+  margin-left: 100px;
+  margin-right: auto;
+  font-family: "Code Bold", sans-serif;
+  font-size: 40px;
+}
 /*Home Page: NavBar style*/
 #navigation{
   font-family: fantasy;
   letter-spacing: 2px;
   text-align: center;
   position: sticky;
+  z-index: 100;
   top: 0px;
 }
 .active{
@@ -86,6 +106,21 @@ li a:hover {
 .reveal-if-active{
   display: none;
 }
+#HelpUs{
+  padding-top: 40px;
+  text-align: center;
+  font-family: "Code Bold", sans-serif;
+  color: #666;
+}
+#categoryChoice{
+  font-family: sans-serif;
+}
+#productFORM{
+  font-family: sans-serif;
+}
+#locationFORM{
+  font-family: sans-serif;
+}
 #contactInfo{
   box-sizing: border-box;
   border: 2px solid #ccc;
@@ -115,14 +150,17 @@ li a:hover {
   background-color: #f8f8f8;
   resize: none;
 }
-
+textarea{
+  font-size: 14px;
+  font-family: sans-serif;
+}
 /*Shop page*/
 #main{
   text-align: center;
   font-family: sans-serif;
   font-size: 20px
 }
-.centerImage {
+.centerShopImage {
     display: block;
     margin-left: auto;
     margin-right: auto;

@@ -1,6 +1,3 @@
-<!--Written by Tania Wilson-->
-<!--Edited by Alexis Evans-->
-
 <!DOCTYPE html>
 <html>
 
@@ -47,14 +44,15 @@
 
         <div id="contactMain">
 
-          <h2>Help us help you!</h2>
+          <h2 id="HelpUs">We love hearing from you!</h2>
           <br><br>
+          <div id="categoryChoice">
           Are you leaving a comment about a product or about one of our locations?<br><br>
           <input type="radio" name="prod-or-local" value="Product" onclick="activeProduct();">Product<br><br>
           <input type="radio" name="prod-or-local" value="Location" onclick="activeLocation()">Location<br><br>
-
+          </div>
           <div id="productFORM" class="reveal-if-active">
-            <form name="productFeebackForm" action="test.fcgi" method="POST">
+            <form name="productFeebackForm" action="productFeedback.fcgi" method="POST">
               <fieldset id="contactInfo">
                 <legend>Contact Information</legend><br>
                 Name:<br>
@@ -70,10 +68,10 @@
               <input id="smallTxtBox" type="text" name="inProduct" required><br><br>
               Would you like to leave a compliment or a complaint?<br><br>
               <input type="radio" name="good-or-bad" value=Compliment required>Compliment<br><br>
-              <input type="radio" name="good-or-bad" value=Complaint required>Complaint<br><br>
-              Please leave your comment below:<br>
+              <input type="radio" name="good-or-bad" value=Complaint required>Complaint<br><br><br>
+              Please leave your comment below:<br><br>
               <textarea id="largeTxtBox" type="text" name="inComment"
-              placeholder="Once completed please press the submit button below..."
+              placeholder="Once completed please press the submit button..."
               rows="10" cols="40" maxlength="1000" required></textarea><br><br>
             </fieldset>
             <br>
@@ -82,7 +80,7 @@
           </div>
 
           <div id="locationFORM" class="reveal-if-active">
-            <form name="locationFeedbackForm" action="test.fcgi" method="POST">
+            <form name="locationFeedbackForm" action="locationFeedback.fcgi" method="POST">
               <fieldset id="contactInfo">
                 <legend>Contact Information</legend><br>
                 Name:<br>
@@ -95,18 +93,19 @@
               <fieldset id="commentSection">
                 <legend>Comment Section</legend><br>
                 Location:<br>
-                <input id="smallTxtBox" type="text" name="inLocation" required><br><br>
+                <input id="smallTxtBox" type="text" name="inLocation"><br><br>
                 *Optional:<br>
                 What service was performed?<br>
-                <input id="smallTxtBox" type="text" name="inService"><br><br>
+                <input id="smallTxtBox" type="text" name="inService" required><br><br>
                 *Optional:<br>
                 Who performed the service?<br>
                 <input id="smallTxtBox" type="text" name="inEmployee"><br><br>
                 Would you like to leave a compliment or a complaint?<br><br>
                 <input type="radio" name="good-or-bad" value=Compliment required>Compliment<br><br>
-                <input type="radio" name="good-or-bad" value=Complaint required>Complaint<br><br>
+                <input type="radio" name="good-or-bad" value=Complaint required>Complaint<br><br><br>
+                Please leave your comment below:<br><br>
                 <textarea id="largeTxtBox" type="text" name="inComment"
-                placeholder="Once completed please press the submit button below..."
+                placeholder="Once completed please press the submit button..."
                 rows="10" cols="40" maxlength="1000" required></textarea><br><br>
               </fieldset>
               <br>
