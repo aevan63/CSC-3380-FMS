@@ -33,7 +33,7 @@ private:
 			 page = BuildHTML(environment().requestUri,website);
 		}
 		else {
-			 page = BuildHTML(environment().gets, environment().requestUri, sqlObj.stringRES(), sqlObj.numRows, sqlObj.getNumFields(), website, formName);
+			 page = BuildHTML(environment().gets, environment().requestUri, sqlObj.stringRES(), sqlObj.getNumRows(), sqlObj.getNumFields(), website, formName);
 		}
 
 	        // out sends page to server w/ fastcgi++
