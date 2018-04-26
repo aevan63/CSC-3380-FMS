@@ -30,7 +30,6 @@ class BuildHTML {
 		multimap<string, string> Postdata;
 
 	public:
-		BuildHTML();
 
 		BuildHTML(const multimap<string, string>& posts);
 
