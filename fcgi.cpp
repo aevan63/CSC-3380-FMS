@@ -69,7 +69,7 @@ private:
                         out << "</div><div class=\"navbar\">";
                         out << "<!--<a href=\"#\" target=\"_blank\">Extra Link</a>-->";
                         out << "<a href=\"https://github.com/aevan63/CSC-3380-FMS\" target=\"_blank\">GitHub</a>";
-                        out << "<!--<a href=\"#\">Extra Link</a>--></div>"
+                        out << "<!--<a href=\"#\">Extra Link</a>--></div>";
 			 //page = BuildHTML(environment().gets, environment().requestUri, sqlObj.stringRES(), sqlObj.getNumRows(), sqlObj.getNumFields(), website, formName);
 	                out << "<div class=\"main\">";
                         out << "<h2>Feedback Processing</h2>";
@@ -90,7 +90,7 @@ private:
 			    	out << "<h2>" << it->second << ":</h2>";
 			}
 			MYSQL_ROW* rows = sqlObj.stringRES();
-			for (int i = 0; i < sqlObj.getNumRows(), ++i) {
+			for (int i = 0; i < sqlObj.getNumRows(); ++i) {
 				out << "<h1>" << rows[i] << "</h1>";
 			}
 			out << "</div></html>";
