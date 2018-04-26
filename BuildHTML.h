@@ -4,7 +4,6 @@
 #define GETHTML_H
 
 #include <iostream>
-#include <sstream>
 #include <fstream>
 #include <map>
 #include <libxml/tree.h>
@@ -31,6 +30,8 @@ class BuildHTML {
 		multimap<string, string> GETdata;
 
 	public:
+		BuildHTML();
+
 		BuildHTML(const string requestUri, std::string website);
 
 		BuildHTML(const multimap<string, string>& gets, const string requestUri, MYSQL_ROW* stringRes,int numRows,int* numFields, std::string website, std::string feedbackForm);
