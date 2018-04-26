@@ -58,7 +58,43 @@ private:
 		     return true;
 		}
 		else {
+		        out << "<html lang=\"en\">";
+                        out << "<head><title>Employee Page</title>";
+	                out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"Style.css\">";
+                        out << "<meta charset=\"UTF-8\">";
+                        out << "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
+                        out << "</head><body><div class=\"header\">";
+                        out << "<h1>Feedback Management System</h1>";
+                        out << "<h2>Welcome, Employees!</h2>";
+                        out << "</div><div class=\"navbar\">";
+                        out << "<!--<a href=\"#\" target=\"_blank\">Extra Link</a>-->";
+                        out << "<a href=\"https://github.com/aevan63/CSC-3380-FMS\" target=\"_blank\">GitHub</a>";
+                        out << "<!--<a href="#">Extra Link</a>--></div>"
 			 //page = BuildHTML(environment().gets, environment().requestUri, sqlObj.stringRES(), sqlObj.getNumRows(), sqlObj.getNumFields(), website, formName);
+	                out << "<div class=\"main\">";
+                        out << "<h2>Feedback Processing</h2>";
+                        out << "<h5>Select a feedback type to begin.</h5>";
+	                out << "<form action=\"backend.fcgi\" method=\"GET\" name=\"FeedQuery\">";
+	                out << "<input list=\"feedback\" name=\"feedback\" placeholder=\"Select Feedback Type\" required>";
+                        out << "<datalist id=\"feedback\"><option value=\"Location Compliment\">";
+                        out << "<option value=\"Location Complaint\">";
+                        out << "<option value=\"Product Compliment\">";
+                        out << "<option value=\"Product Complaint\">";
+                        out << "</datalist><br><br>";
+			out << "<input type=\"text\" name=\"tag\" placeholder=\"Insert tag (optional)\"><br><br>";
+                        out << "<input type=\"submit\" value=\"Search\">";
+	                out << "</form></div>
+			out << "<h5>List of open feedback matching ";
+			multimap<string, string>Getdata = environment().gets;
+			for (multimap<string, string>::iterator it = Getdata.begin(); it!=Getdata.end();++it) {
+			    	out << "<h2>" << it->second << ":</h2>";
+			}
+			MYSQL_ROW* rows = sqlObj.stringRES();
+			for (int i = 0; i < sqlObj.getNumRows(), ++i) {
+				out << "<h1>" << rows[i] << "</h1>";
+			}
+			out << "</div></html>;
+				
 		}
 
 	        // out sends page to server w/ fastcgi++
