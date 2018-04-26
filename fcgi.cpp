@@ -91,8 +91,9 @@ private:
 			    	out << "<h2>" << it->second << ":</h2>";
 			}
 			MYSQL_ROW* rows = sqlObj.stringRES();
+			int* fields = sqlObj.getNumFields();
 			for (int i = 0; i < sqlObj.getNumRows(); ++i) {
-				for (int j = 0; j < sqlObj.getNumFields(); ++j) {
+				for (int j = 0; j < fields[i]; ++j) {
 					out << "<h1>" << rows[i][j]<< "</h1>";
 				}
 			}
