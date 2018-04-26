@@ -33,25 +33,22 @@ void MariaDB::close() {
 MYSQL_ROW* MariaDB::stringRES() {
     MYSQL_ROW row;
     numRows = mysql_num_rows(queryResult);
-    MYSQL_ROW rows[numRows];
+    int numFields = mysql_num_fields(queryResult);
+    MYSQL_ROW* rows = new MYSQL_ROW[numRows];
     
-    for (unsigned int i = 0; i<numRows; ++i) {
-        unsigned long *lengths;
-        lengths = mysql_fetch_lengths(queryResult);
-        for(unsigned int j=0; j < mysql_num_fields(queryResult); ++j) {
-            rows[i][j] = row[j];
-            //for now lets also have it print for testing
-            printf("[%.*s] ", (int) lengths[j],
-                   row[j] ? row[j] : "NULL");
-        }
-        printf("\n");
-    }
+    for (int i = 0; i<numRows; ++i)
+        rows[i] = mysql_fetch_row(queryResult);
     return rows;
 }
+
 int* MariaDB::getNumFields() {
     int numFields[numRows];
     for (unsigned int i = 0; i < numRows; ++i) {
         numFields[i] = mysql_num_fields(queryResult);
     }
     return numFields;
+}
+
+int MariaDB::getNumRows() {
+    return numRows;
 }
