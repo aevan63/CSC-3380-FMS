@@ -11,33 +11,54 @@ void BuildQuery::formToSQL() {
     
     if (GETData.size()) {
         it = GETData.find("feedback");
-        if (it->second == "Location Complaint") {
-            isComplaint = true;
-            isLocation = true;
-        }
-        else if (it->second == "Location Compliment") {
-            isComplaint = false;
-            isLocation = true;
-        }
-        else if (it->second == "Product Complaint") {
-            isComplaint = true;
-            isLocation = false;
-        }
-        else {
-            isComplaint = false;
-            isLocation = false;
+        if (it != GETData.end()) {
+            if (it->second == "Location Complaint") {
+                isComplaint = true;
+                isLocation = true;
+            }
+            else if (it->second == "Location Compliment") {
+                isComplaint = false;
+                isLocation = true;
+            }
+            else if (it->second == "Product Complaint") {
+                isComplaint = true;
+                isLocation = false;
+            }
+            else {
+                isComplaint = false;
+                isLocation = false;
+            }
+            
+            query << "select ID, UserText, Name, Email, Phone, Tag, "
+            << ((isLocation) ? "Location, Service, Employee " : "Product ")
+            << "from "
+            << ((isLocation) ? "LocationFeedback " : "ProductFeedback ")
+            << "where IsComlpaint="
+            << ((isComplaint) ? "true" : "false");
+            it = GETData.find("inTag");
+            if (it != GETData.end())
+                query << " and Tag='" << it->second << "'";
+            query << ";";
         }
         
-        query << "select ID, UserText, Name, Email, Phone, Tag, "
-              << ((isLocation) ? "Location, Service, Employee " : "Product ")
-              << "from "
-              << ((isLocation) ? "LocationFeedback " : "ProductFeedback ")
-              << "where IsComlpaint="
-              << ((isComplaint) ? "true" : "false");
-        it = GETData.find("inTag");
-        if (it != GETData.end())
-            query << " and Tag='" << it->second << "'";
-        query << ";";
+        it = GETData.find("delete");
+        if (it != GETData.end()) {
+            int id = 1; // Placeholder
+            if (isLocation)
+                query << "delete LocationFeedback where ID=" << id << ";";
+            else
+                query << "delete ProductFeedback where ID=" << id << ";";
+        }
+        
+        it = GETData.find("tag");
+        if (it != GETData.end()) {
+            int id = 1; // Placeholders
+            string tag = "";
+            if (isLocation)
+                query << "update LocationFeedback set Tag='" << tag << "' where ID=" << id << ";";
+            else
+                query << "update ProductFeedback set Tag='" << tag << "' where ID=" << id << ";";
+        }
     }
     
     else if (POSTData.size()) {
