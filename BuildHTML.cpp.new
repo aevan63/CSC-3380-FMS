@@ -34,7 +34,7 @@ BuildHTML::BuildHTML(const multimap<string, string>& posts) {
     htmlStream << "</div></body></html>";
 	html = htmlStream.str();
 	//insertNum = -1;
-	HTMLdoc = htmlReadMemory((char*)html.c_str(), sizeof((char*)html.c_str()), uri.c_str(), "UTF-8", HTML_PARSE_RECOVER | HTML_PARSE_NOERROR | HTML_PARSE_NOWARNING);
+	
 }
 
 BuildHTML::BuildHTML(const multimap<string, string>& gets, const string requestUri, MYSQL_ROW* RES, int numRows, int* numFields, std::string website, string feedbackForm) {
