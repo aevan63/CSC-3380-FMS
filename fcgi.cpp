@@ -93,7 +93,7 @@ private:
 			MYSQL_ROW* rows = sqlObj.stringRES();
 			int* fields = sqlObj.getNumFields();
 			for (int i = 0; i < sqlObj.getNumRows(); ++i) {
-				for (int j = 0; j < fields[i]; ++j) {
+				for (int j = 0; j < fields[0]; ++j) {
 					out << "<h1>" << rows[i][j]<< "</h1>";
 				}
 			}
