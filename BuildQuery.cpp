@@ -45,7 +45,7 @@ void BuildQuery::formToSQL() {
             isComplaint = true;
         else
             isComplaint = false;
-        if (POSTData.find("prod-or-local")->second == "Location")
+        if (POSTData.find("inLocation") != POSTData.end())
             isLocation = true;
         else
             isLocation = false;
