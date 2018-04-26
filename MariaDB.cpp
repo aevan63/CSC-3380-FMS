@@ -10,13 +10,8 @@ MariaDBException::MariaDBException(string message) {
 }
 
 MariaDB::MariaDB() throw (MariaDBException) {
-    MariaDBInitializer init = MariaDBInitializer();
-    try {
-        conn = init.connect();
-    }
-    catch (ConnectionError& c) {
-        throw MariaDBException(c.getError());
-    }
+    conn = mysql_init(NULL);
+    mysql_real_connect(conn);
 }
 
 void MariaDB::query(string query) throw (MariaDBException) {
