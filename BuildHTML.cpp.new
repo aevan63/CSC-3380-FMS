@@ -67,7 +67,7 @@ BuildHTML::BuildHTML(const multimap<string, string>& gets, const string requestU
 	performInsert(insertLocation, insertStrings); */
 }
 void BuildHTML::performInsert(htmlNodePtr sibling, xmlChar** newNodes) {
-	xmlChar* tmpStr;
+	/*xmlChar* tmpStr;
 	char* encoding = "UTF-8";
 	// htmlDocPtr tmpDoc;
 	htmlNodePtr newNode;
@@ -82,7 +82,7 @@ void BuildHTML::performInsert(htmlNodePtr sibling, xmlChar** newNodes) {
 		newChildNode = xmlNewText( BAD_CAST tmpStr);
 		xmlAddChild(newNode, newChildNode);
 		xmlAddPrevSibling(sibling, newNode);
-	}
+	} */
 }
 
 htmlNodePtr BuildHTML::findInsert(htmlNodePtr root, string matchName) {
@@ -101,7 +101,7 @@ htmlNodePtr BuildHTML::findInsert(htmlNodePtr root, string matchName) {
 
 
 xmlChar** BuildHTML::buildFromSQL(MYSQL_ROW* stringRes, int numRows, int* numFields) {
-	ostringstream tmpStream;
+/*	ostringstream tmpStream;
 	xmlChar* tempString;
     xmlChar* htmlRes[numRows];
     htmlDocPtr tmpDoc;
@@ -115,7 +115,7 @@ xmlChar** BuildHTML::buildFromSQL(MYSQL_ROW* stringRes, int numRows, int* numFie
 	    delete[] tempString;
 	}
 	tempString = (xmlChar*)tmpStream.str().c_str();
-	return htmlRes;
+	return htmlRes; */
 }
 
 string BuildHTML::getHtml() {
