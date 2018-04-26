@@ -32,7 +32,8 @@ private:
 		//BuildHTML page;
 		if (environment().posts.size()) {
 			 // page = BuildHTML(environment().posts);
-			 out << "<!DOCTYPE html><html><head>";
+			 out << "Content-Type: text/html; charset=utf-8\r\n\r\n";
+			 out << "<html><head>";
 			 out << "<title>This Is a Website</title>";
 			 out << "<script></script>";
 			 out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"websiteStyle.css\" />";
