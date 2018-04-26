@@ -1,5 +1,6 @@
 // Written by Christian Lashover and Jackie Bowers
 
+#include <cstring>
 #include "MariaDB.h"
 #include "MariaDBInitializer.h"
 using namespace std;
@@ -20,7 +21,7 @@ MariaDB::MariaDB() throw (MariaDBException) {
 }
 
 void MariaDB::query(string query) throw (MariaDBException) {
-    int state = mysql_real_query(conn, query.c_str(), query.length());
+    int state = mysql_real_query(conn, query.c_str(), strlen(query.c_str()));
     /*if (state)
      throw MariaDBException("Query " + query + " failed");*/
     queryResult = mysql_store_result(conn);
