@@ -38,9 +38,9 @@ void MariaDB::close() {
 
 MYSQL_ROW* MariaDB::stringRES() {
     MYSQL_ROW row;
-    int numFields = mysql_num_fields(queryResult));
+    int numFields = mysql_num_fields(queryResult);
     MYSQL_ROW* rows = new MYSQL_ROW[numRows];
-    while (row = mysql_fetch_row(queryResult) {
+    while (row = mysql_fetch_row(queryResult)) {
         for (int i = 0; i < numFields; ++i) {
             rows[i] = row;
         }
