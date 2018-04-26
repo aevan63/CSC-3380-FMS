@@ -1,15 +1,15 @@
 /*WebsiteHeader*/
 @font-face{
   font-family: "Cyborg";
-  src: url("cyborg/CYBORG.ttf")
+  src: url("CYBORG.ttf")
 }
 @font-face{
   font-family: "Code Light";
-  src: url("code/CODE Light.otf")
+  src: url("CODE Light.otf")
 }
 @font-face{
   font-family: "Code Bold";
-  src: url("code/CODE Bold.otf")
+  src: url("CODE Bold.otf")
 }
 #topHeader{
   background-image: url("TigerEye.png");
