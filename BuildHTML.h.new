@@ -1,0 +1,49 @@
+//Written by Jackie Bowers
+
+#ifndef GETHTML_H
+#define GETHTML_H
+
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <libxml/tree.h>
+#include <libxml/HTMLparser.h>
+#include <libxml/tree.h>
+//#include <libxml++/libxml++.h>
+#include <boost/regex.hpp>
+#include <mysql.h>
+#include <fastcgi++/request.hpp>
+#include <fastcgi++/http.hpp>
+#include "LocationFeedback.h"
+#include "ProductFeedback.h"
+
+
+using namespace std;
+
+
+class BuildHTML {
+	private:
+		string uri;
+		string html;
+		htmlDocPtr HTMLdoc;
+		multimap<string, string> GETdata;
+		multimap<string, string> Postdata;
+
+	public:
+		BuildHTML();
+
+		BuildHTML(const multimap<string, string>& posts);
+
+		BuildHTML(const multimap<string, string>& gets, const string requestUri, MYSQL_ROW* stringRes,int numRows,int* numFields, std::string website, std::string feedbackForm);
+
+		htmlNodePtr findInsert(htmlNodePtr root, string matchName);
+
+		void performInsert(htmlNodePtr sibling, xmlChar** newNodes);
+
+		xmlChar** buildFromSQL(MYSQL_ROW* stringRes, int numRows, int* numFields);
+
+		string getHtml();
+
+		string geturi();
+};
+#endif
