@@ -4,7 +4,6 @@
 #include <iostream>
 
 using namespace std;
-BuildHTML::BUildHTML(){}
 BuildHTML::BuildHTML(const multimap<string, string>& posts) {
 	string   currentLine;
 	ifstream preFile;
