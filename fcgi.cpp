@@ -12,9 +12,15 @@
 #include "BuildHTML.h"
 
 
-class BuildResponse: public Fastcgipp::Request<char> {
+class BuildResponse: public Fastcgipp::Request<wchar_t> {
 	//with the fastcgi++ library the response method of any request class
 	//seems to be called automatically when it is needed by the manager
+public:
+	BuildResponse():
+		//pass max post size to request
+		Fastcgipp::Request<wchar_t>(std::numeric_limits<size_t>::max())
+		{}
+private:
 	bool response() {
 		using Fastcgipp::Encoding;
 		std::string website = "FMS.com"; //placeholder, ofc.
