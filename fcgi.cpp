@@ -26,14 +26,20 @@ private:
 		std::string website = "FMS.com"; //placeholder, ofc.
 		std::string formName = "productFeedbackForm";
 		MariaDB sqlObj = MariaDB();
-        BuildQuery queryizer = BuildQuery(environment().gets, environment().posts);
+                BuildQuery queryizer = BuildQuery(environment().gets, environment().posts);
 		sqlObj.query(queryizer.getQuery());
-        BuildHTML page = BuildHTML(environment().gets, environment().requestUri, sqlObj.stringRES(), sqlObj.getNumRows(), sqlObj.getNumFields(), website, formName);
+		BuildHTML page;
+		if (environment().posts.size()) {
+			 page = BuildHTML(environment().requestUri,website);
+		}
+		else {
+			 page = BuildHTML(environment().gets, environment().requestUri, sqlObj.stringRES(), sqlObj.numRows, sqlObj.getNumFields(), website, formName);
+		}
 
 	        // out sends page to server w/ fastcgi++
-	    out << page.getHtml();
+	        out << page.getHtml();
 
-	    sqlObj.close();
+	        sqlObj.close();
 		return true;
 	}
 };
