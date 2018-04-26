@@ -40,9 +40,11 @@ MYSQL_ROW* MariaDB::stringRES() {
     MYSQL_ROW row;
     int numFields = mysql_num_fields(queryResult);
     MYSQL_ROW* rows = new MYSQL_ROW[numRows];
-    
-    for (int i = 0; i < numRows; i++)
-        rows[i] = mysql_fetch_row(queryResult);
+    while (row = mysql_fetch_row(queryResult) {
+        for (int i = 0; i < numFields; ++i) {
+            rows[i] = row;
+        }
+    }
     return rows;
 }
 
