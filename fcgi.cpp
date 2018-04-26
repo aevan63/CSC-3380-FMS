@@ -58,6 +58,7 @@ private:
 		     return true;
 		}
 		else {
+			out << "Content-Type: text/html; charset=utf-8\r\n\r\n";
 		        out << "<html lang=\"en\">";
                         out << "<head><title>Employee Page</title>";
 	                out << "<link rel=\"stylesheet\" type=\"text/css\" href=\"Style.css\">";
